@@ -1,0 +1,62 @@
+{
+  "pages": [
+    {
+      "name": "index",
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页",
+        "usingComponents": {
+          "van-button": "/wxcomponents/vant/button/index"
+        }
+      }
+    },
+    {
+      "name": "profile",
+      "path": "pages/profile/profile",
+      "style": {
+        "navigationBarTitleText": "个人"
+      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "pages/test",
+      "pages": [
+        {
+          "name": "test",
+          "path": "test",
+          "style": {
+            "navigationBarTitleText": "测试"
+          }
+        }
+      ]
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#1AA86C",
+    "backgroundColor": "#F8F8F8",
+    "usingComponents": {
+      "van-button": "/wxcomponents/vant/button/index",
+      "van-rate": "/wxcomponents/vant/rate/index",
+      "van-icon": "/wxcomponents/vant/icon/index"
+    }
+  },
+  "tabBar": {
+    "color": "#1AA86C",
+    "selectedColor": "#1AA86C",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "个人"
+      }
+    ]
+  }
+}

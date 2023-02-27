@@ -1,0 +1,14 @@
+{
+  "extends": ["config:base", "schedule:earlyMondays"],
+  "automerge": true,
+  "automergeType": "pr",
+  "assignees": ["Prefinem"],
+  "assignAutomerge": true,
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies", "dependencies"],
+      "matchUpdateTypes": ["patch"],
+      "groupName": "(dev) dependencies (patch)"
+    }
+  ]
+}
