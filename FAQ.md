@@ -1,13 +1,3 @@
-### vetur 提示组件引入报错
-
-**原因：**
-
-vue3 配套的 vscode 插件为 volar,vetur 会存在冲突
-
-**解决方法：**
-
-在扩展中搜索 volar 安装,然后搜索 vetur 设置禁用工作区
-
 ### windows 拉取代码后 eslint 报错 Delete `␍`eslint
 
 **原因：**

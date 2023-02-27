@@ -1,5 +1,6 @@
 import presetRemToPx from '@unocss/preset-rem-to-px'
 import { defineConfig, Preset, presetAttributify, presetIcons, presetUno, Rule } from 'unocss'
+import presetWeapp from 'unocss-preset-weapp'
 // https://github.com/unocss/unocss
 
 const sizeMapping: Record<string, string> = {
@@ -30,6 +31,7 @@ export const createConfig = () => {
   return defineConfig({
     presets: [
       presetUno(),
+      presetWeapp() as Preset,
       presetAttributify(),
       presetIcons({
         prefix: '',
