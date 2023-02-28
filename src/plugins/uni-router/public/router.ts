@@ -1,12 +1,21 @@
+import { App, computed } from 'vue'
+
 import { lifeCycle, proxyHookDeps } from '../helpers/config'
 import { registerEachHooks, registerRouterHooks } from '../helpers/lifeCycle'
 import { initMixins } from '../helpers/mixins'
 import { assertNewOptions, def, getDataType } from '../helpers/utils'
-import { PromiseResolve, Router, uniBackApiRule, uniBackRule } from '../options/base'
+import {
+  PromiseResolve,
+  Router,
+  routeRule,
+  START_LOCATION_NORMALIZED,
+  uniBackApiRule,
+  uniBackRule,
+} from '../options/base'
 import { InstantiateConfig, LifeCycleConfig } from '../options/config'
 import { createRoute, forceGuardEach, lockNavjump } from '../public/methods'
 import { rewriteMethod } from '../public/rewrite'
-
+import { routeLocationKey, routerKey } from './injectionSymbols'
 let AppReadyResolve: PromiseResolve = () => {}
 const AppReady: Promise<void> = new Promise((resolve) => (AppReadyResolve = resolve))
 
@@ -23,6 +32,7 @@ function createRouter(params: InstantiateConfig): Router {
     $route: null,
     $lockStatus: false,
     routesMap: {},
+    currentRoute: START_LOCATION_NORMALIZED,
     lifeCycle: registerRouterHooks<LifeCycleConfig>(lifeCycle, options),
     push(to) {
       lockNavjump(to, router, 'push')
@@ -59,7 +69,7 @@ function createRouter(params: InstantiateConfig): Router {
     afterEach(userGuard): void {
       registerEachHooks(router, 'afterHooks', userGuard)
     },
-    install(app: any): void {
+    install(app: App): void {
       router.Vue = app
       rewriteMethod(this)
       initMixins(app, this)
@@ -96,6 +106,14 @@ function createRouter(params: InstantiateConfig): Router {
           }
         },
       })
+      app.provide(routerKey, this)
+
+      const currentRoute = computed<routeRule>(() => router.currentRoute)
+      const reactiveRoute = {}
+      for (const key in START_LOCATION_NORMALIZED) {
+        reactiveRoute[key] = computed(() => currentRoute.value[key])
+      }
+      app.provide(routeLocationKey, reactive(reactiveRoute))
     },
   }
   def(router, 'currentRoute', () => createRoute(router))

@@ -17,6 +17,19 @@
 import { useTitle } from '@/hooks/useTitle'
 import { forward } from '@/utils/router'
 
+import { useRoute, useRouter } from '../../plugins/uni-router'
+
+const curRouter = useRouter()
+const curRoute = useRoute()
+
+console.log(curRouter, 'curRouter 页面 index')
+console.log(curRoute.path, 'curRoute 页面 index')
+
+setTimeout(() => {
+  console.log('即将跳转路由')
+  curRouter.push('/pages/test/test')
+}, 2000)
+
 const { title, changeTitle } = useTitle()
 function goTest() {
   forward('test', {

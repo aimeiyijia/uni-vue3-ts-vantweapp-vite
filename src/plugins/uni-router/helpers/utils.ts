@@ -245,7 +245,7 @@ export function getUniCachePage<T extends objectAny>(pageIndex?: number): T | []
     return pages
   }
   const page = pages.reverse()[pageIndex]
-  if (page == null) {
+  if (page === null) {
     return []
   }
   return page

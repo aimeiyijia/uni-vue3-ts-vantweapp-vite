@@ -26,6 +26,14 @@ import { useTitle } from '@/hooks/useTitle'
 import { onUrlPage } from '@/utils/router'
 import uniAsync from '@/utils/uniAsync'
 
+import { useRoute, useRouter } from '../../plugins/uni-router'
+
+const curRouter = useRouter()
+const curRoute = useRoute()
+
+console.log(curRouter, 'curRouter 页面 test')
+console.log(curRoute.path, 'curRoute 页面 test')
+
 onLoad(() => {
   const { pageName, pagePath, pageQuery } = useInit()
   console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery')

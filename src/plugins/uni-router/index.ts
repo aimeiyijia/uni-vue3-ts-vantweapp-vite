@@ -3,6 +3,7 @@ export * from './helpers/utils'
 export * from './options/base'
 export * from './options/config'
 export { createRouter, RouterMount } from './public/router'
+export { useRoute, useRouter } from './public/useApi'
 
 const version = npmPackageInfo.version
 if (/[A-Z]/g.test(version)) {

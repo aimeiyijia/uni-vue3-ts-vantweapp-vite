@@ -19,9 +19,9 @@ router.afterEach((to, from) => {
 
 console.log(router, '路由哈哈哈')
 
-setTimeout(() => {
-  console.log('要跳转了')
-  router.push('/pages/test/test')
-}, 2000)
+// setTimeout(() => {
+//   console.log('要跳转了')
+//   router.push('/pages/test/test')
+// }, 2000)
 
 export { router, RouterMount }
