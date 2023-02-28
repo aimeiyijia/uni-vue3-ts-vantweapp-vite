@@ -4,10 +4,7 @@
       "name": "index",
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "首页",
-        "usingComponents": {
-          "van-button": "/wxcomponents/vant/button/index"
-        }
+        "navigationBarTitleText": "首页"
       }
     },
     {

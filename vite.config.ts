@@ -4,10 +4,12 @@ import { resolve } from 'path'
 import PiniaAutoRefs from 'pinia-auto-refs'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-// import { VantResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
+import commonjs from 'vite-plugin-commonjs'
 
+import ROUTES from './build/read-pages'
+console.log(ROUTES, '路由')
 import env from './src/config/env'
 
 // https://vitejs.dev/config/
@@ -17,7 +19,12 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
+  define: {
+    ROUTES,
+    npmPackageInfo: { name: '1', version: '1', lastVersion: '1' },
+  },
   plugins: [
+    commonjs(),
     AutoImportTypes(),
     PiniaAutoRefs(),
     AutoImport({

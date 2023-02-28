@@ -15,7 +15,7 @@
       "@/*": ["src/*"]
     },
     "lib": ["esnext", "dom", "ES6"],
-    "types": ["@dcloudio/types", "pinia-plugin-persist-uni", "miniprogram-api-typings"]
+    "types": ["node", "@dcloudio/types", "pinia-plugin-persist-uni", "miniprogram-api-typings"]
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"]
