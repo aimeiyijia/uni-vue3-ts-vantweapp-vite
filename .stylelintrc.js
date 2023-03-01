@@ -1,6 +1,36 @@
+/**
+ * @param {String} block
+ * @param {Object} [presetOptions]
+ * @param {String} [presetOptions.namespace]
+ * @returns {RegExp}
+ */
+const bemSelector = (block, presetOptions) => {
+  const ns = presetOptions && presetOptions.namespace ? `${presetOptions.namespace}-` : ''
+  const WORD = '[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*'
+  var ampersand = '(&?)*'
+  const element = `(?:__${WORD})?`
+  const modifier = `(?:--${WORD}){0,2}`
+  const attribute = '(?:\\[.+\\])?'
+
+  const regex = ampersand + '\\.' + ns + block + element + modifier + attribute + '$'
+  return new RegExp(regex)
+}
+const combinedBemSelector = (block, presetOptions) => {
+  const ns = presetOptions && presetOptions.namespace ? `${presetOptions.namespace}-` : ''
+  const WORD = '[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*'
+  var ampersand = '(&?)*'
+  const element = `(?:__${WORD})?`
+  const modifier = `(?:--${WORD}){0,2}`
+  const attribute = '(?:\\[.+\\])?'
+
+  const regex = ampersand + '\\.' + block + element + modifier + attribute + '$'
+  return new RegExp(regex)
+  // const namePattern = /([a-z0-9]+|#\{\$.*\})((-[a-z0-9]+|#\{\$.*\})+)?/
+  // return new RegExp(`^\\.(${block})(((--|__)(${namePattern.source}))+)?$`)
+}
 module.exports = {
   extends: ['stylelint-config-standard'],
-  plugins: ['stylelint-order', 'stylelint-scss'],
+  plugins: ['stylelint-order', 'stylelint-selector-bem-pattern', 'stylelint-scss'],
   overrides: [
     {
       files: ['**/*.scss'],
@@ -12,7 +42,20 @@ module.exports = {
     },
   ],
   rules: {
+    'plugin/selector-bem-pattern': {
+      // 指定Preset Patterns，支持suit和bem两种（无默认值）
+      preset: 'bem',
+      componentSelectors: {
+        initial: bemSelector,
+        // combined: combinedBemSelector,
+      },
+      utilitySelectors: '^.util-[a-z]+$',
+      ignoreSelectors: ['^.icon-'],
+      ignoreCustomProperties: [],
+      implicitComponents: true,
+    },
     indentation: 2,
+    'selector-class-pattern': null,
     'block-closing-brace-newline-after': [
       'always',
       {

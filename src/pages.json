@@ -37,7 +37,9 @@
     "usingComponents": {
       "van-button": "/wxcomponents/vant/button/index",
       "van-rate": "/wxcomponents/vant/rate/index",
-      "van-icon": "/wxcomponents/vant/icon/index"
+      "van-icon": "/wxcomponents/vant/icon/index",
+      "van-field": "@vant/weapp/field/index",
+      "van-divider": "@vant/weapp/divider/index"
     }
   },
   "tabBar": {
