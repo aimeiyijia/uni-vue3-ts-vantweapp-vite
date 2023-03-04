@@ -1,7 +1,8 @@
 # uni-vue3-ts-vantweapp-vite
 
 uni-app + vue3.x + typescript + @vant/weapp + vite 搭建的小程序项目模板
-改写了uni-simple-router这个插件，是它能在vue3环境中运行
+
+改写了uni-simple-router这个插件，使它能在vue3环境中运行
 
 ## 简介
 
