@@ -2,6 +2,8 @@
 
 uni-app + vue3.x + typescript + @vant/weapp + vite 搭建的小程序项目模板
 
+改写了uni-simple-router这个插件，使它能在vue3环境中运行
+
 ## 简介
 
 `uni-app + vue3.x` 项目工程化搭建，集成 `ESLint`、`Prettier`、`Stylelint`、`husky`、`lint-staged` 、`commitlint`等，
