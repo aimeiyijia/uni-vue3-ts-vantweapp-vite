@@ -54,7 +54,6 @@ specifiers:
   stylelint-scss: 4.0.1
   stylelint-selector-bem-pattern: ^2.1.1
   typescript: 4.6.3
-  uni-simple-router: 2.0.8-beta.4
   unocss: 0.31.13
   unocss-preset-weapp: ^0.4.2
   unplugin-auto-import: 0.9.2
@@ -83,7 +82,6 @@ dependencies:
   pinia: 2.0.13_ifhmkzsxec62ezvqv7qmanm4bq
   pinia-plugin-persist-uni: 1.1.5_pinia@2.0.13+vue@3.2.33
   sass: 1.49.9
-  uni-simple-router: 2.0.8-beta.4
   vue: 3.2.33
 
 devDependencies:
@@ -6100,10 +6098,6 @@ packages:
       defu: 6.1.2
       jiti: 1.17.1
     dev: true
-
-  /uni-simple-router/2.0.8-beta.4:
-    resolution: {integrity: sha512-ipTHhOaRvjV8qrt3HosX5pNMhwFYBnFOuKyV5joH0evfXubjrGI5tjdwpmwzfW5h3VBth3iAqScv+pW/QmIJXw==}
-    dev: false
 
   /unimport/0.4.7_vite@2.9.5:
     resolution: {integrity: sha512-V2Pbscd1VSdgWm1/OI2pjtydEOTjE7DDnHZKhpOq7bSUBc1i8+1f6PK8jI1lJ1plRDcSNr0DLtAmtU9NPkFQpw==}
