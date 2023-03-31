@@ -21,7 +21,6 @@ specifiers:
   '@types/node': ^18.14.2
   '@typescript-eslint/eslint-plugin': 4.15.1
   '@typescript-eslint/parser': 4.15.1
-  '@unocss/preset-rem-to-px': 0.45.1
   '@vant/weapp': ^1.10.14
   '@vue/eslint-config-typescript': 7.0.0
   auto-import-types: 0.0.4
@@ -93,7 +92,6 @@ devDependencies:
   '@types/node': 18.14.2
   '@typescript-eslint/eslint-plugin': 4.15.1_mhspmlwyocmml32a3etislnlpu
   '@typescript-eslint/parser': 4.15.1_hrkuebk64jiu2ut2d2sm4oylnu
-  '@unocss/preset-rem-to-px': 0.45.1
   '@vue/eslint-config-typescript': 7.0.0_4k5hjbmmwhkeiwrix6m2d5kzea
   auto-import-types: 0.0.4
   autoprefixer: 10.4.4_postcss@8.4.21
@@ -1506,10 +1504,6 @@ packages:
     resolution: {integrity: sha512-mrhFmnbSVgUDrSH22WEHwKPFXOSHe10lEsE++7VsnEKpVAlYYnk+LxEjCNCm7GhiikWGuWI8oPLg50qQoBW3XQ==}
     dev: true
 
-  /@unocss/core/0.45.1:
-    resolution: {integrity: sha512-PRbpgWtXs+GnU8Mi6MAG3l/VCqmzn6s5k/QvQLG9J27AzN+ps651YKBfWKiGYrjMtt+0B41iq0w9fcNd8vQUpg==}
-    dev: true
-
   /@unocss/core/0.50.1:
     resolution: {integrity: sha512-jnWClMMGybzyXcRX4DY+g/DJ4JrH9w8YN/H6OTHt0WyrNfR1V3ebJtEc6gbqCkZCh2XmqSA5F49QPhTbErYePg==}
     dev: true
@@ -1540,12 +1534,6 @@ packages:
     resolution: {integrity: sha512-SEvDjE7hOLLmi+kvGAafBJtQUicAZJOHMeHmnjvQBOUHkBRUaHf9Qd/JgRaiUFC3lyKyQnxhzOSBk+22uonMJg==}
     dependencies:
       '@unocss/core': 0.31.13
-    dev: true
-
-  /@unocss/preset-rem-to-px/0.45.1:
-    resolution: {integrity: sha512-MismEWnjgpDVr4tt0qBw+aENUXCAPEvZkAZwmp8bRc5IGIVjUgXYzz5dbEgQtRrh0xXM9fvPKHtn5aVC/gvoSQ==}
-    dependencies:
-      '@unocss/core': 0.45.1
     dev: true
 
   /@unocss/preset-typography/0.31.13:

@@ -1,7 +1,8 @@
-import presetRemToPx from '@unocss/preset-rem-to-px'
+// https://github.com/unocss/unocss
 import { defineConfig, Preset, presetAttributify, presetIcons, presetUno, Rule } from 'unocss'
 import presetWeapp from 'unocss-preset-weapp'
-// https://github.com/unocss/unocss
+
+import presetRemToRpx from './preset-rem-to-rpx'
 
 const sizeMapping: Record<string, string> = {
   h: 'height',
@@ -17,7 +18,7 @@ const sizeMapping: Record<string, string> = {
   pb: 'padding-bottom',
   pl: 'padding-left',
   fs: 'font-size',
-  br: 'border-radius',
+  br: 'border-radius'
 }
 
 function getSizeRules(Mapping: Record<string, string>): Rule<{}>[] {
@@ -27,8 +28,15 @@ function getSizeRules(Mapping: Record<string, string>): Rule<{}>[] {
   })
 }
 
+const customRules: Rule<{}>[] = [['fontColor-red', { color: 'red' }]]
+const shortcuts = {
+  'custom-shortcut': 'text-lg text-orange hover:text-teal'
+}
+
 export const createConfig = () => {
   return defineConfig({
+    rules: [...getSizeRules(sizeMapping), ...customRules],
+    shortcuts,
     presets: [
       presetUno(),
       presetWeapp() as Preset,
@@ -38,15 +46,14 @@ export const createConfig = () => {
         extraProperties: {
           display: 'inline-block',
           cursor: 'pointer',
-          'font-size': '20px',
-        },
+          'font-size': '20px'
+        }
       }),
-      presetRemToPx({
-        baseFontSize: 4,
-      }) as Preset,
+      presetRemToRpx({
+        baseFontSize: 4
+      }) as Preset
     ],
-    include: [/\.vue$/, /pages.json$/],
-    rules: getSizeRules(sizeMapping),
+    include: [/\.vue$/, /pages.json$/]
   })
 }
 

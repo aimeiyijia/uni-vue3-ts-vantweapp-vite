@@ -36,8 +36,7 @@
     "lint": "eslint --ext .vue --ext .js --ext .ts src/ --fix",
     "style": "stylelint \"src/**/*.(vue|scss|css)\" --fix",
     "postinstall": "husky install",
-    "cz": "git add . && cz",
-    "tag": "npm version patch && git push && git push origin --tags"
+    "cz": "git add . && cz"
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-alpha-3040720220422004",
@@ -68,7 +67,6 @@
     "@types/node": "^18.14.2",
     "@typescript-eslint/eslint-plugin": "4.15.1",
     "@typescript-eslint/parser": "4.15.1",
-    "@unocss/preset-rem-to-px": "0.45.1",
     "@vue/eslint-config-typescript": "7.0.0",
     "auto-import-types": "0.0.4",
     "autoprefixer": "10.4.4",
