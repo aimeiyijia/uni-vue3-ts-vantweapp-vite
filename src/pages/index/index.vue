@@ -15,11 +15,11 @@
 
 <script setup lang="ts">
 import { useTitle } from '@/hooks/useTitle'
+import { useRoute, useRouter } from '@/plugins/uni-router'
 import { forward } from '@/utils/router'
 
-import { useRoute, useRouter } from '../../plugins/uni-router'
-
 const curRouter = useRouter()
+
 const curRoute = useRoute()
 
 console.log(curRouter, 'curRouter 页面 index')
@@ -33,7 +33,7 @@ setTimeout(() => {
 const { title, changeTitle } = useTitle()
 function goTest() {
   forward('test', {
-    a: 1,
+    a: 1
   })
 }
 </script>

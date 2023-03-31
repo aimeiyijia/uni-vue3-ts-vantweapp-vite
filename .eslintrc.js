@@ -3,7 +3,7 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    es2021: true,
+    es2021: true
   },
   parser: 'vue-eslint-parser',
   extends: [
@@ -15,15 +15,15 @@ module.exports = {
     'prettier',
     'vue-global-api',
     '.eslintrc-auto-import.json',
-    '.eslintrc-auto-import-types.json',
+    '.eslintrc-auto-import-types.json'
   ],
   parserOptions: {
     ecmaVersion: 12,
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true,
-    },
+      jsx: true
+    }
   },
   // eslint-plugin-vue @typescript-eslint/eslint-plugin eslint-plugin-prettier的缩写
   plugins: ['vue', '@typescript-eslint', 'prettier', 'import', 'simple-import-sort'],
@@ -150,11 +150,11 @@ module.exports = {
     'no-fallthrough': 'warn',
     'no-extra-boolean-cast': 'warn',
     'no-case-declarations': 'warn',
-    'no-async-promise-executor': 'warn',
+    'no-async-promise-executor': 'warn'
   },
   globals: {
     uni: true,
     ROUTES: true,
-    npmPackageInfo: true,
-  },
+    npmPackageInfo: true
+  }
 }

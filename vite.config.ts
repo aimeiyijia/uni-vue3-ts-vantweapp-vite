@@ -16,12 +16,12 @@ import env from './src/config/env'
 export default defineConfig({
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-    },
+      '@': resolve(__dirname, 'src')
+    }
   },
   define: {
     ROUTES,
-    npmPackageInfo: { name: '1', version: '1', lastVersion: '1' },
+    npmPackageInfo: { name: '1', version: '1', lastVersion: '1' }
   },
   plugins: [
     commonjs(),
@@ -34,15 +34,15 @@ export default defineConfig({
         'uni-app',
         'pinia',
         {
-          '@/helper/pinia-auto-refs': ['useStore'],
-        },
+          '@/helper/pinia-auto-refs': ['useStore']
+        }
       ],
       // resolvers: [VantResolver()],
       eslintrc: {
         enabled: true, // Default `false`
         filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
-        globalsPropValue: 'readonly', // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
-      },
+        globalsPropValue: 'readonly' // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+      }
     }),
     Components({
       // 指定组件位置，默认是src/components
@@ -51,10 +51,10 @@ export default defineConfig({
       // resolvers: [VantResolver()],
       extensions: ['vue'],
       // 配置文件生成位置
-      dts: 'src/components.d.ts',
+      dts: 'src/components.d.ts'
     }),
     uni(),
-    Unocss(),
+    Unocss()
   ],
   server: {
     port: 3000,
@@ -66,8 +66,8 @@ export default defineConfig({
       '^/api': {
         target: env.apiBaseUrl, // 后端服务实际地址
         changeOrigin: true, //开启代理
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
-    },
-  },
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })
