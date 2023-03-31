@@ -15,52 +15,37 @@ const bemSelector = (block, presetOptions) => {
   const regex = ampersand + '\\.' + ns + block + element + modifier + attribute + '$'
   return new RegExp(regex)
 }
-const combinedBemSelector = (block, presetOptions) => {
-  const ns = presetOptions && presetOptions.namespace ? `${presetOptions.namespace}-` : ''
-  const WORD = '[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*'
-  var ampersand = '(&?)*'
-  const element = `(?:__${WORD})?`
-  const modifier = `(?:--${WORD}){0,2}`
-  const attribute = '(?:\\[.+\\])?'
-
-  const regex = ampersand + '\\.' + block + element + modifier + attribute + '$'
-  return new RegExp(regex)
-  // const namePattern = /([a-z0-9]+|#\{\$.*\})((-[a-z0-9]+|#\{\$.*\})+)?/
-  // return new RegExp(`^\\.(${block})(((--|__)(${namePattern.source}))+)?$`)
-}
 module.exports = {
   extends: ['stylelint-config-standard'],
   plugins: ['stylelint-order', 'stylelint-selector-bem-pattern', 'stylelint-scss'],
   overrides: [
     {
       files: ['**/*.scss'],
-      customSyntax: 'postcss-scss',
+      customSyntax: 'postcss-scss'
     },
     {
       files: ['*.html', '**/*.{html,vue}'],
-      customSyntax: 'postcss-html',
-    },
+      customSyntax: 'postcss-html'
+    }
   ],
   rules: {
     'plugin/selector-bem-pattern': {
-      // 指定Preset Patterns，支持suit和bem两种（无默认值）
       preset: 'bem',
       componentSelectors: {
-        initial: bemSelector,
-        // combined: combinedBemSelector,
+        initial: bemSelector
       },
       utilitySelectors: '^.util-[a-z]+$',
-      ignoreSelectors: ['^.icon-'],
+      ignoreSelectors: ['^.icon-', '^.wx-'],
       ignoreCustomProperties: [],
-      implicitComponents: true,
+      implicitComponents: true
     },
     indentation: 2,
     'selector-class-pattern': null,
     'block-closing-brace-newline-after': [
       'always',
       {
-        ignoreAtRules: ['if', 'else'],
-      },
+        ignoreAtRules: ['if', 'else']
+      }
     ],
     'string-quotes': 'single',
     'alpha-value-notation': 'number',
@@ -80,9 +65,9 @@ module.exports = {
           'include',
           'mixin',
           'return',
-          'while',
-        ],
-      },
+          'while'
+        ]
+      }
     ],
     'selector-type-no-unknown': [true, { ignoreTypes: ['page', 'radio', 'checkbox'] }],
     'number-leading-zero': 'always',
@@ -355,8 +340,8 @@ module.exports = {
       // Webkit专有属性
       '-webkit-overflow-scrolling',
       '-webkit-text-fill-color',
-      '-webkit-tap-highlight-color',
+      '-webkit-tap-highlight-color'
     ],
-    'rule-empty-line-before': 'never',
-  },
+    'rule-empty-line-before': 'never'
+  }
 }

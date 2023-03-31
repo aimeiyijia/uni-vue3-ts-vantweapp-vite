@@ -107,7 +107,6 @@
 <script setup lang="ts"></script>
 
 <style scoped lang="scss">
-/* @define login */
 .login__container,
 .login__bg-img {
   box-sizing: border-box;
@@ -259,7 +258,5 @@
 .login__form--opera-container .register-user {
   font-size: 34rpx;
   color: #4892f5;
-}
-.login__bottom {
 }
 </style>
