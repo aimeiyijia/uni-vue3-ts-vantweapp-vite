@@ -52,7 +52,6 @@
     "@dcloudio/uni-mp-toutiao": "3.0.0-alpha-3040720220422004",
     "@dcloudio/uni-mp-weixin": "3.0.0-alpha-3040720220422004",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3040720220422004",
-    "@vant/weapp": "^1.10.14",
     "path-to-regexp": "^6.2.1",
     "pinia": "2.0.13",
     "pinia-plugin-persist-uni": "1.1.5",

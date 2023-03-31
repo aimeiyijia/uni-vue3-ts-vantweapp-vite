@@ -21,7 +21,6 @@ specifiers:
   '@types/node': ^18.15.11
   '@typescript-eslint/eslint-plugin': 4.15.1
   '@typescript-eslint/parser': 4.15.1
-  '@vant/weapp': ^1.10.14
   '@vue/eslint-config-typescript': 7.0.0
   auto-import-types: 0.0.4
   autoprefixer: 10.4.4
@@ -76,7 +75,6 @@ dependencies:
   '@dcloudio/uni-mp-toutiao': 3.0.0-alpha-3040720220422004_postcss@8.4.21+vue@3.2.33
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3040720220422004_postcss@8.4.21+vue@3.2.33
   '@dcloudio/uni-quickapp-webview': 3.0.0-alpha-3040720220422004_postcss@8.4.21+vue@3.2.33
-  '@vant/weapp': 1.10.14
   path-to-regexp: 6.2.1
   pinia: 2.0.13_ifhmkzsxec62ezvqv7qmanm4bq
   pinia-plugin-persist-uni: 1.1.5_pinia@2.0.13+vue@3.2.33
@@ -1601,10 +1599,6 @@ packages:
       magic-string: 0.26.7
       vite: 2.9.5_sass@1.49.9
     dev: true
-
-  /@vant/weapp/1.10.14:
-    resolution: {integrity: sha512-5usuhoN1kiOV6pzrdVzHrAux6DupKlGd9w+yYc992Zy1n1wHLZMb1dGM3+xtbNE3tpWE2qv95vIFSMpJRFyE7Q==}
-    dev: false
 
   /@vitejs/plugin-legacy/1.8.2_vite@2.9.5:
     resolution: {integrity: sha512-NCOKU+pU+cxLMR9P9RTolEuOK+h+zYBXlknj+zGcKSj/NXBZYgA1GAH1FnO4zijoWRiTaiOm2ha9LQrELE7XHg==}
