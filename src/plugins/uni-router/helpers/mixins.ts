@@ -18,7 +18,7 @@ const appletProxy: {
   page: string
 } = {
   app: false,
-  page: '',
+  page: ''
 }
 
 export function getMixins(
@@ -55,7 +55,7 @@ export function getMixins(
           buildVueRouter(router, this.$options.router, vueRouteMap)
           proxyEachHook(router, this.$options.router)
         }
-      },
+      }
     },
     'app-plus': {
       beforeCreate(this: any): void {
@@ -65,7 +65,7 @@ export function getMixins(
           proxyPageHook(this, router, 'app')
           registerLoddingPage(router)
         }
-      },
+      }
     },
     'app-lets': {
       beforeCreate(this: any): void {
@@ -103,8 +103,8 @@ export function getMixins(
           onloadProxyOk = true
           forceGuardEach(router)
         }
-      },
-    },
+      }
+    }
   }
   return toggleHooks[platform as 'h5' | 'app-plus' | 'app-lets']
 }
@@ -113,6 +113,6 @@ export function initMixins(Vue: any, router: Router) {
   router.routesMap = routesMap // 挂载自身路由表到路由对象下
   // Vue.util.defineReactive(router, '_Route', createRoute(router, 19970806))
   Vue.mixin({
-    ...getMixins(Vue, router),
+    ...getMixins(Vue, router)
   })
 }

@@ -9,6 +9,6 @@ export const useTitle = () => {
   }
   return {
     title,
-    changeTitle,
+    changeTitle
   }
 }

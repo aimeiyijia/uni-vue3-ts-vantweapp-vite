@@ -12,6 +12,6 @@ export function createApp() {
   app.use(store)
   app.use(router)
   return {
-    app,
+    app
   }
 }

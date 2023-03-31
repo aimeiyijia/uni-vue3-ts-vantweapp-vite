@@ -25,7 +25,7 @@ enum EPlatform {
   /**快应用联盟*/
   QuickappWebviewUnion = 'quickapp-webview-union',
   /**快应用华为*/
-  QuickappWebviewHuawei = 'quickapp-webview-huawei',
+  QuickappWebviewHuawei = 'quickapp-webview-huawei'
 }
 
 /**使用条件编译获取平台信息*/

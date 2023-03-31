@@ -12,7 +12,7 @@ const commonParams = {
   v: APP_VERSION, // 系统版本，用于获取最新版数据
   device,
   swidth,
-  sheight,
+  sheight
 }
 
 export function getCommonParams() {

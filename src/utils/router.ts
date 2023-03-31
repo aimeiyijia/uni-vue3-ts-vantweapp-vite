@@ -45,6 +45,6 @@ export function forward(name: string, query: Types.Query = {}) {
 
 export function back(delta: number) {
   uni.navigateBack({
-    delta,
+    delta
   })
 }

@@ -47,7 +47,7 @@ async function getTest() {
   const getTest = await apiTest.getTest({ a: 1 })
   if (!getTest) {
     uni.showToast({
-      title: '自定义异常处理',
+      title: '自定义异常处理'
     })
   }
   // getTest.data?.age

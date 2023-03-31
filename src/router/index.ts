@@ -5,7 +5,7 @@ import { createRouter, RouterMount } from '../plugins/uni-router'
 console.log(ROUTES, '共享路由')
 const router = createRouter({
   platform: (process.env.VUE_APP_PLATFORM as platformRule) || 'mp-weixin',
-  routes: [...ROUTES],
+  routes: [...ROUTES]
 })
 
 //全局路由前置守卫

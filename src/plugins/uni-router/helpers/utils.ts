@@ -13,7 +13,7 @@ import {
   RoutesRule,
   totalNextRoute,
   uniBackApiRule,
-  uniBackRule,
+  uniBackRule
 } from '../options/base'
 import { H5Config, InstantiateConfig } from '../options/config'
 import { ERRORHOOK } from '../public/hooks'
@@ -25,7 +25,7 @@ export function def(defObject: objectAny, key: string, getValue: Function) {
   Object.defineProperty(defObject, key, {
     get() {
       return getValue()
-    },
+    }
   })
 }
 
@@ -41,7 +41,7 @@ export function mergeConfig<T extends InstantiateConfig>(baseConfig: T, userConf
   const config: { [key: string]: any } = Object.create(null)
   const baseConfigKeys: Array<string> = Object.keys(baseConfig).concat([
     'resolveQuery',
-    'parseQuery',
+    'parseQuery'
   ])
   for (let i = 0; i < baseConfigKeys.length; i += 1) {
     const key = baseConfigKeys[i]
@@ -49,7 +49,7 @@ export function mergeConfig<T extends InstantiateConfig>(baseConfig: T, userConf
       if (userConfig[key].constructor === Object) {
         config[key] = {
           ...baseConfig[key],
-          ...userConfig[key],
+          ...userConfig[key]
         }
       } else if (key === 'routes') {
         config[key] = [...baseConfig[key], ...userConfig[key]]
@@ -89,7 +89,7 @@ export function getRoutePath(
     finallyPath,
     aliasPath: route.aliasPath || route.path,
     path: route.path,
-    alias: route.alias,
+    alias: route.alias
   }
 }
 
@@ -266,7 +266,7 @@ export function urlToJson(url: string): {
   }
   return {
     path,
-    query,
+    query
   }
 }
 
@@ -291,7 +291,7 @@ export function forMatNextToFrom<T extends totalNextRoute>(
   }
   return {
     matTo: matTo,
-    matFrom: matFrom,
+    matFrom: matFrom
   }
 }
 
@@ -314,7 +314,7 @@ export function paramsToQuery(
         route = getWildcardRule(router, {
           type: 2,
           msg: `命名路由为：${name} 的路由，无法在路由表中找到！`,
-          toRule,
+          toRule
         })
       }
       const { finallyPath } = getRoutePath(route, router)
@@ -328,7 +328,7 @@ export function paramsToQuery(
         return {
           ...moreToRule,
           path: finallyPath as string,
-          query: paramsQuery,
+          query: paramsQuery
         }
       }
     }
@@ -404,7 +404,7 @@ export function lockDetectWarn(
           type: 2,
           msg: '当前页面正在处于跳转状态，请稍后再进行跳转....',
           NAVTYPE: navType,
-          uniActualData,
+          uniActualData
         },
         router
       )

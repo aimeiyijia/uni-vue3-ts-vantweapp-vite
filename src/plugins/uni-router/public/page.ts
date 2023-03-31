@@ -58,7 +58,7 @@ export function proxyPageHook(vueVim: any, router: Router, pageType: pageTypeRul
           },
           resetHook: (): void => {
             hookList.splice(k, 1, resetHook)
-          },
+          }
         }
       }
     }

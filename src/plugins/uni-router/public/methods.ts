@@ -7,7 +7,7 @@ import {
   notRouteTo404,
   paramsToQuery,
   routesForMapRoute,
-  voidFun,
+  voidFun
 } from '../helpers/utils'
 import {
   navErrorRule,
@@ -21,7 +21,7 @@ import {
   routeRule,
   totalNextRoute,
   uniBackApiRule,
-  uniBackRule,
+  uniBackRule
 } from '../options/base'
 import { createFullPath, createToFrom } from '../public/page'
 import { transitionTo } from './hooks'
@@ -69,7 +69,7 @@ export function navjump(
       // 主要剥离事件函数
       animation = {
         ...(animation || {}),
-        ...(to as uniBackApiRule),
+        ...(to as uniBackApiRule)
       }
     }
     if (router.options.platform === 'h5') {
@@ -98,7 +98,7 @@ export function navjump(
       // next 管道函数拦截时 直接next即可
       nextCall.next({
         replace: navType !== 'push',
-        ...parseToRule,
+        ...parseToRule
       })
     } else {
       // Fixe  https://github.com/SilurianYang/uni-simple-router/issues/240   2021年3月7日14:45:36
@@ -148,7 +148,7 @@ export function backOptionsBuild(
     ...animation,
     path: toRule.path,
     query: toRule.query,
-    delta: level,
+    delta: level
   }
   if (getDataType<any>(animation) === '[object Object]') {
     const { animationDuration, animationType } = animation as uniBackApiRule
@@ -185,7 +185,7 @@ export function forceGuardEach(
         NAVTYPE: navType,
         uniActualData: {},
         level: 0,
-        msg: `不存在的页面栈，请确保有足够的页面可用，当前 level:0`,
+        msg: `不存在的页面栈，请确保有足够的页面可用，当前 level:0`
       },
       router
     )
@@ -194,7 +194,7 @@ export function forceGuardEach(
   lockNavjump(
     {
       path: `/${route}`,
-      query: deepDecodeQuery(options || {}),
+      query: deepDecodeQuery(options || {})
     },
     router,
     navType,
@@ -216,7 +216,7 @@ export function createRoute(
     NAVTYPE: '',
     query: {},
     params: {},
-    BACKTYPE: (orignRule || { BACKTYPE: '' }).BACKTYPE || '', // v2.0.5 +
+    BACKTYPE: (orignRule || { BACKTYPE: '' }).BACKTYPE || '' // v2.0.5 +
   }
 
   if (level === 19970806) {
@@ -256,7 +256,7 @@ export function createRoute(
             msg: errorMsg,
             NAVTYPE: _NAVTYPE,
             level,
-            uniActualData: _args,
+            uniActualData: _args
           },
           router
         )
@@ -269,7 +269,7 @@ export function createRoute(
         query: deepDecodeQuery(pageOptions),
         fullPath: decodeURIComponent(
           ((page as objectAny).$page || {}).fullPath || '/' + (page as objectAny).route
-        ),
+        )
       }
       if (router.options.platform !== 'app-plus') {
         appPage.path = `/${(page as objectAny).route}`

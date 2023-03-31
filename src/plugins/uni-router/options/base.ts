@@ -3,14 +3,14 @@ import { InstantiateConfig, LifeCycleConfig } from '../options/config'
 export enum hookToggle {
   'beforeHooks' = 'beforeEach',
   'afterHooks' = 'afterEach',
-  'enterHooks' = 'beforeEnter',
+  'enterHooks' = 'beforeEnter'
 }
 export enum navtypeToggle {
   'push' = 'navigateTo',
   'replace' = 'redirectTo',
   'replaceAll' = 'reLaunch',
   'pushTab' = 'switchTab',
-  'back' = 'navigateBack',
+  'back' = 'navigateBack'
 }
 export enum rewriteMethodToggle {
   'navigateTo' = 'push',
@@ -18,7 +18,7 @@ export enum rewriteMethodToggle {
   'redirectTo' = 'replace',
   'reLaunch' = 'replaceAll',
   'switchTab' = 'pushTab',
-  'navigateBack' = 'back',
+  'navigateBack' = 'back'
 }
 export type proxyDepsRule = {
   resetIndex: Array<number>
@@ -105,7 +105,7 @@ export const START_LOCATION_NORMALIZED: routeRule = {
   matched: [],
   meta: {},
   redirectedFrom: undefined,
-  NAVTYPE: '',
+  NAVTYPE: ''
 }
 
 // 跳转api时，传递的跳转规则

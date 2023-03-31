@@ -15,7 +15,7 @@ function reject(err: { errno: number; errmsg: string }) {
 
     default:
       uni.showToast({
-        title: errmsg,
+        title: errmsg
       })
       break
   }
@@ -35,9 +35,7 @@ function baseRequest(method, url: string, data) {
       timeout: 20000,
       header: {
         'content-type':
-          method === 'GET'
-            ? 'application/json; charset=utf-8'
-            : 'application/x-www-form-urlencoded',
+          method === 'GET' ? 'application/json; charset=utf-8' : 'application/x-www-form-urlencoded'
       },
       data,
       success: (res: any) => {
@@ -50,21 +48,21 @@ function baseRequest(method, url: string, data) {
         } else {
           reject({
             errno: -1,
-            errmsg: '抢购火爆，稍候片刻！',
+            errmsg: '抢购火爆，稍候片刻！'
           })
         }
       },
       fail: (err) => {
         reject({
           errno: -1,
-          errmsg: '网络不给力，请检查你的网络设置~',
+          errmsg: '网络不给力，请检查你的网络设置~'
         })
       },
       complete: (data) => {
         console.log(data, 'data')
         resolve(responseDate)
         hideLoading()
-      },
+      }
     })
   })
 }
@@ -73,7 +71,7 @@ const http = {
   get: <T>(api, params) =>
     baseRequest('GET', api, { ...getCommonParams(), ...params }) as Http.Response<T>,
   post: <T>(api, params) =>
-    baseRequest('POST', api, { ...getCommonParams(), ...params }) as Http.Response<T>,
+    baseRequest('POST', api, { ...getCommonParams(), ...params }) as Http.Response<T>
 }
 
 export default http

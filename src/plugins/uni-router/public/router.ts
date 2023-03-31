@@ -10,7 +10,7 @@ import {
   routeRule,
   START_LOCATION_NORMALIZED,
   uniBackApiRule,
-  uniBackRule,
+  uniBackRule
 } from '../options/base'
 import { InstantiateConfig, LifeCycleConfig } from '../options/config'
 import { createRoute, forceGuardEach, lockNavjump } from '../public/methods'
@@ -49,13 +49,13 @@ function createRouter(params: InstantiateConfig): Router {
     back(level = 1, animation) {
       if (getDataType(animation) !== '[object Object]') {
         const backRule: uniBackRule = {
-          from: 'navigateBack',
+          from: 'navigateBack'
         }
         animation = backRule
       } else if (!Reflect.has(animation as uniBackRule | uniBackApiRule, 'from')) {
         animation = {
           ...animation,
-          from: 'navigateBack',
+          from: 'navigateBack'
         }
       }
       lockNavjump(level + '', router, 'back', undefined, animation)
@@ -81,16 +81,16 @@ function createRouter(params: InstantiateConfig): Router {
             value: actualData,
             writable: false,
             configurable: false,
-            enumerable: false,
+            enumerable: false
           })
 
           return Object.seal(actualData)
-        },
+        }
       })
       Object.defineProperty(app.config.globalProperties, '$Route', {
         get() {
           return createRoute(router)
-        },
+        }
       })
       // 【Fixe】  https://github.com/SilurianYang/uni-simple-router/issues/254
       Object.defineProperty(app.config.globalProperties, '$AppReady', {
@@ -104,7 +104,7 @@ function createRouter(params: InstantiateConfig): Router {
           if (value === true) {
             AppReadyResolve()
           }
-        },
+        }
       })
       app.provide(routerKey, this)
 
@@ -114,7 +114,7 @@ function createRouter(params: InstantiateConfig): Router {
         reactiveRoute[key] = computed(() => currentRoute.value[key])
       }
       app.provide(routeLocationKey, reactive(reactiveRoute))
-    },
+    }
   }
   def(router, 'currentRoute', () => createRoute(router))
 
@@ -127,7 +127,7 @@ function RouterMount(Vim: any, router: Router, el: string | undefined = '#app'):
   if (getDataType<Array<any>>(router.mount) === '[object Array]') {
     router.mount.push({
       app: Vim,
-      el,
+      el
     })
   } else {
     throw new Error(`挂载路由失败，router.app 应该为数组类型。当前类型：${typeof router.mount}`)
@@ -135,7 +135,7 @@ function RouterMount(Vim: any, router: Router, el: string | undefined = '#app'):
   if (router.options.platform === 'h5') {
     const vueRouter = router.$route as any
     vueRouter.replace({
-      path: vueRouter.currentRoute.fullPath,
+      path: vueRouter.currentRoute.fullPath
     })
   } // 其他端目前不需要做啥
 }

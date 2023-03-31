@@ -15,13 +15,13 @@ export default defineStore(
       name,
       token,
       fullName,
-      updateName,
+      updateName
     }
   },
   {
     persist: {
       // 开启持久化
-      enabled: true,
-    },
+      enabled: true
+    }
   }
 )

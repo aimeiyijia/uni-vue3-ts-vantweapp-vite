@@ -6,7 +6,7 @@ import {
   reNotNavMethodRule,
   Router,
   startAnimationRule,
-  uniNavApiRule,
+  uniNavApiRule
 } from '../options/base'
 import { resetAndCallPageHook, resetPageHook } from './page'
 import { stringifyQuery } from './query'
@@ -91,7 +91,7 @@ export function uniOriginJump(
         complete && complete.apply(null, args)
         // eslint-disable-next-line prefer-spread
         callOkCb && callOkCb.apply(null, args)
-      },
+      }
     })
   }
 }
@@ -111,7 +111,7 @@ export function formatOriginURLQuery(
     fail,
     complete,
     delta,
-    animation,
+    animation
   } = options
   const strQuery = stringifyQuery(query || {})
   const queryURL = strQuery === '' ? path || url : (path || url) + strQuery
@@ -130,6 +130,6 @@ export function formatOriginURLQuery(
     events,
     success,
     fail,
-    complete,
+    complete
   })
 }

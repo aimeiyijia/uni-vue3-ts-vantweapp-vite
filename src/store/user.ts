@@ -4,8 +4,8 @@ export default defineStore({
     return {
       userInfo: {
         token: 'token',
-        user_id: 111,
-      },
+        user_id: 111
+      }
     } as {
       userInfo: User.UserInfo
     }
@@ -20,7 +20,7 @@ export default defineStore({
     },
     userId: (state) => {
       return state.userInfo.user_id
-    },
+    }
   },
   actions: {
     setUserInfo(userInfo) {
@@ -32,6 +32,6 @@ export default defineStore({
       // const appStore = useAppStore()
       // appStore.setData(data) // 调用 app store 里的 action 方法
       // return data
-    },
-  },
+    }
+  }
 })
