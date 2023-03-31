@@ -44,6 +44,8 @@ ts 类型声明在带来类型提示，减少编程过程中 bug 率的同时，
 - 增加文件的执行权限。
 
   ```shell
+  chmod +x ./.husky/*
+  或
   chmod +x ./.husky/pre-commit
   chmod +x ./.husky/commit-msg
   ```
