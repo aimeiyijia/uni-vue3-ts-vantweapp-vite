@@ -9,14 +9,12 @@
     </view>
     <view>1234</view>
     <view @click="changeTitle">changeTitle</view>
-    <view @click="goTest">合格好好干测试页快</view>
   </view>
 </template>
 
 <script setup lang="ts">
 import { useTitle } from '@/hooks/useTitle'
 import { useRoute, useRouter } from '@/plugins/uni-router'
-import { forward } from '@/utils/router'
 
 const curRouter = useRouter()
 
@@ -25,17 +23,12 @@ const curRoute = useRoute()
 console.log(curRouter, 'curRouter 页面 index')
 console.log(curRoute.path, 'curRoute 页面 index')
 
-setTimeout(() => {
-  console.log('即将跳转路由')
-  curRouter.push('/pages/test/test')
-}, 2000)
+// setTimeout(() => {
+//   console.log('即将跳转路由')
+//   curRouter.push('/pages/test/test')
+// }, 2000)
 
 const { title, changeTitle } = useTitle()
-function goTest() {
-  forward('test', {
-    a: 1
-  })
-}
 </script>
 
 <style scoped lang="scss">

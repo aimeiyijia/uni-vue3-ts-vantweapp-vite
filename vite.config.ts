@@ -10,7 +10,6 @@ import commonjs from 'vite-plugin-commonjs'
 
 import ROUTES from './build/read-pages'
 console.log(ROUTES, '路由')
-import env from './src/config/env'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -64,7 +63,7 @@ export default defineConfig({
       // 本地开发环境通过代理实现跨域，生产环境使用 nginx 转发
       // 正则表达式写法
       '^/api': {
-        target: env.apiBaseUrl, // 后端服务实际地址
+        target: 'http:192.168.0.0:0000', // 后端服务实际地址
         changeOrigin: true, //开启代理
         rewrite: (path) => path.replace(/^\/api/, '')
       }

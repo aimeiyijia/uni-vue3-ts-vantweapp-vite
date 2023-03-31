@@ -15,20 +15,20 @@
       }
     }
   ],
-  "subPackages": [
-    {
-      "root": "pages/test",
-      "pages": [
-        {
-          "name": "test",
-          "path": "test",
-          "style": {
-            "navigationBarTitleText": "测试"
-          }
-        }
-      ]
-    }
-  ],
+  // "subPackages": [
+  //   {
+  //     "root": "pages/test",
+  //     "pages": [
+  //       {
+  //         "name": "test",
+  //         "path": "test",
+  //         "style": {
+  //           "navigationBarTitleText": "测试"
+  //         }
+  //       }
+  //     ]
+  //   }
+  // ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
@@ -38,8 +38,8 @@
       "van-button": "/wxcomponents/vant/button/index",
       "van-rate": "/wxcomponents/vant/rate/index",
       "van-icon": "/wxcomponents/vant/icon/index",
-      "van-field": "@vant/weapp/field/index",
-      "van-divider": "@vant/weapp/divider/index"
+      "van-field": "/wxcomponents/vant/field/index",
+      "van-divider": "/wxcomponents/vant/divider/index"
     }
   },
   "tabBar": {

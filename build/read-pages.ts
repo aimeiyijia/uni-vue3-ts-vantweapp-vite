@@ -4,7 +4,7 @@ import path from 'path'
 import { getJson } from './json'
 
 const CONFIG = {
-  includes: ['path', 'aliasPath', 'name'],
+  includes: ['path', 'aliasPath', 'name']
 }
 
 function getPageJsonData() {
@@ -45,7 +45,7 @@ function getPagesRoutes(pages, rootPath = '') {
  */
 function getNotMpRoutes(subPackages) {
   let routes = []
-  if (subPackages === null || subPackages.length === 0) {
+  if (!subPackages || subPackages.length === 0) {
     return []
   }
   for (let i = 0; i < subPackages.length; i++) {

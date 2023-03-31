@@ -1,13 +1,15 @@
 export default defineStore({
   id: 'user',
+  persist: {
+    // 开启持久化
+    enabled: true
+  },
   state: () => {
     return {
       userInfo: {
         token: 'token',
         user_id: 111
       }
-    } as {
-      userInfo: User.UserInfo
     }
   },
   getters: {
