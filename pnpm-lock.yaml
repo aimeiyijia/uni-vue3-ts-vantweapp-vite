@@ -24,9 +24,11 @@ specifiers:
   '@vue/eslint-config-typescript': 7.0.0
   auto-import-types: 0.0.4
   autoprefixer: 10.4.4
+  clone-deep: ^4.0.1
   comment-json: ^4.2.3
   commitizen: 4.2.4
   commitlint: 16.2.3
+  crypto-js: ^4.1.1
   cz-customizable: 6.3.0
   eslint: 7.32.0
   eslint-config-prettier: 8.3.0
@@ -35,6 +37,7 @@ specifiers:
   eslint-plugin-simple-import-sort: 7.0.0
   eslint-plugin-vue: 7.0.0
   husky: 7.0.4
+  luch-request: ^3.0.8
   miniprogram-api-typings: ^3.9.0
   path-to-regexp: ^6.2.1
   pinia: 2.0.13
@@ -75,6 +78,9 @@ dependencies:
   '@dcloudio/uni-mp-toutiao': 3.0.0-alpha-3040720220422004_postcss@8.4.21+vue@3.2.33
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3040720220422004_postcss@8.4.21+vue@3.2.33
   '@dcloudio/uni-quickapp-webview': 3.0.0-alpha-3040720220422004_postcss@8.4.21+vue@3.2.33
+  clone-deep: 4.0.1
+  crypto-js: 4.1.1
+  luch-request: 3.0.8
   path-to-regexp: 6.2.1
   pinia: 2.0.13_ifhmkzsxec62ezvqv7qmanm4bq
   pinia-plugin-persist-uni: 1.1.5_pinia@2.0.13+vue@3.2.33
@@ -669,7 +675,6 @@ packages:
 
   /@dcloudio/types/2.5.17:
     resolution: {integrity: sha512-PMxXWdFOAmDQUo7BNx19O4htfaztdOT7RuD5jTVm8/jFcUd/hkNJJXLcSLePqXZwyTjjirstLBhC3FU709Y+8Q==}
-    dev: true
 
   /@dcloudio/uni-app-plus/3.0.0-alpha-3040720220422004_y7exdayhld4l3szc4xxq7aq44m:
     resolution: {integrity: sha512-5mYIlfUd+AqG6hGl/3LiHZw5B9jUO0JVR3Zb9Zfs+Vjgn1vtku6aLhu+FV/5BBZ0hXfOaA/vfn1ikcAfWu4JSw==}
@@ -2243,6 +2248,15 @@ packages:
       wrap-ansi: 7.0.0
     dev: true
 
+  /clone-deep/4.0.1:
+    resolution: {integrity: sha512-neHB9xuzh/wk0dIHweyAXv2aPGZIVk3pLMe+/RNzINf17fe0OG96QroktYAUm7SM1PBnzTabaLboqqxDyMU+SQ==}
+    engines: {node: '>=6'}
+    dependencies:
+      is-plain-object: 2.0.4
+      kind-of: 6.0.3
+      shallow-clone: 3.0.1
+    dev: false
+
   /clone-regexp/2.2.0:
     resolution: {integrity: sha512-beMpP7BOtTipFuW8hrJvREQ2DrRu3BE7by0ZpibtfBA+qfHYvMGTc2Yb1JMYPKg/JUw0CHYvpg796aNTSW9z7Q==}
     engines: {node: '>=6'}
@@ -2486,6 +2500,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+    dev: false
 
   /css-font-size-keywords/1.0.0:
     resolution: {integrity: sha512-Q+svMDbMlelgCfH/RVDKtTDaf5021O486ZThQPIpahnIjUkMUslC+WuOQSWTgGSrNCH08Y7tYNEmmy0hkfMI8Q==}
@@ -4077,6 +4095,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /is-plain-object/2.0.4:
+    resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      isobject: 3.0.1
+    dev: false
+
   /is-plain-object/5.0.0:
     resolution: {integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==}
     engines: {node: '>=0.10.0'}
@@ -4164,6 +4189,11 @@ packages:
   /isexe/2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
+
+  /isobject/3.0.1:
+    resolution: {integrity: sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /jiti/1.17.1:
     resolution: {integrity: sha512-NZIITw8uZQFuzQimqjUxIrIcEdxYDFIe/0xYfIlVXTkiBjjyBEvgasj5bb0/cHtPRD/NziPbT312sFrkI5ALpw==}
@@ -4261,7 +4291,6 @@ packages:
   /kind-of/6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /known-css-properties/0.23.0:
     resolution: {integrity: sha512-h9ivI88e1lFNmTT4HovBN33Ysn0OIJG7IPG2mkpx2uniQXFWqo35QdiX7w0TovlUFXfW8aPFblP5/q0jlOr2sA==}
@@ -4369,6 +4398,12 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /luch-request/3.0.8:
+    resolution: {integrity: sha512-5ZVp1y4tFaizbGMOuQwbeyfHnf4PhQAwQ3S1Fm1tS7juMoB14pXslxWriElhiSq6ytYYW0KVC8RShfHiNujFcQ==}
+    dependencies:
+      '@dcloudio/types': 2.5.17
+    dev: false
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
@@ -5500,6 +5535,13 @@ packages:
   /setprototypeof/1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
     dev: true
+
+  /shallow-clone/3.0.1:
+    resolution: {integrity: sha512-/6KqX+GVUdqPuPPd2LxDDxzX6CAbjJehAAOKlNpqqUpAqPM6HeL8f+o3a+JsyGjn2lv0WY8UsTgUJjU9Ok55NA==}
+    engines: {node: '>=8'}
+    dependencies:
+      kind-of: 6.0.3
+    dev: false
 
   /shebang-command/2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}

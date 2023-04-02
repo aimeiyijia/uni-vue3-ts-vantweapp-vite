@@ -18,5 +18,12 @@
     "types": ["node", "@dcloudio/types", "pinia-plugin-persist-uni", "miniprogram-api-typings"]
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "types/**/*.ts",
+    "vite.config.ts"
+  ]
 }
