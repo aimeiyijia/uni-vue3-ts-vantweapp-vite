@@ -9,6 +9,10 @@ declare module '*.vue' {
 
 declare let ROUTES
 
+declare interface ImportMetaEnv extends ViteEnv {
+  __: unknown
+}
+
 declare interface ViteEnv {
   VITE_USE_MOCK: Boolean
   VITE_USE_ERUDA: Boolean

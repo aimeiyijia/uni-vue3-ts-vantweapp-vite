@@ -1,19 +1,8 @@
 import type { VNode, VNodeChild, PropType as VuePropType } from 'vue'
-
-declare var __uniConfig: any
-declare var __uniRoutes: any
-declare var npmPackageInfo: { name: string; version: string; lastVersion: string }
-
 declare global {
-  const __APP_INFO__: {
-    pkg: {
-      name: string
-      version: string
-      dependencies: Recordable<string>
-      devDependencies: Recordable<string>
-    }
-    lastBuildTime: string
-  }
+  var __uniConfig: any
+  var __uniRoutes: any
+  var npmPackageInfo: { name: string; version: string; lastVersion: string }
 
   // vue
   type PropType<T> = VuePropType<T>
@@ -43,9 +32,6 @@ declare global {
 
   interface WheelEvent {
     path?: EventTarget[]
-  }
-  interface ImportMetaEnv extends ViteEnv {
-    __: unknown
   }
 
   function parseInt(s: string | number, radix?: number): number
