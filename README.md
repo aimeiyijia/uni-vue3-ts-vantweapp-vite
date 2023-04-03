@@ -2,7 +2,7 @@
 
 uni-app + vue3.x + typescript + @vant/weapp + vite 搭建的小程序项目模板
 
-改写了uni-simple-router这个插件，使它能在vue3环境中运行
+改写了 uni-simple-router 这个插件，使它能在 vue3 环境中运行
 
 ## 简介
 
@@ -76,7 +76,7 @@ uni-app + vue3.x + typescript + @vant/weapp + vite 搭建的小程序项目模�
 ├── .czrc cz规则配置
 ├── .editorconfig 编辑器配置
 ├── .eslintignore eslint忽略配置
-├── .eslintrc-auto-import-types.json 自动挂载@types下.d.ts文件定义的类型到global(auto-import-types自动生成)
+├── .eslintrc-auto-import-types.json 自动挂载types下.d.ts文件定义的类型到global(auto-import-types自动生成)
 ├── .eslintrc-auto-import.json 自动挂载 unplugin-auto-import 的类型到global(unplugin-auto-import自动生成)
 ├── .eslintrc.js eslint配置
 ├── .gitignore git忽略配置

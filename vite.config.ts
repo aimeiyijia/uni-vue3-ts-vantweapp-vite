@@ -1,3 +1,5 @@
+// vite-plugin-restart 不起作用
+// vite-plugin-environment 不起作用，
 import uni from '@dcloudio/vite-plugin-uni'
 import AutoImportTypes from 'auto-import-types'
 import { resolve } from 'path'
@@ -8,13 +10,11 @@ import Components from 'unplugin-vue-components/vite'
 import { ConfigEnv, defineConfig, loadEnv } from 'vite'
 import commonjs from 'vite-plugin-commonjs'
 
-import ROUTES from './build/read-pages'
-console.log(ROUTES, '路由')
+import ROUTES from './build/route'
+console.log(ROUTES, '生成的路由')
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }: ConfigEnv) => {
-  // const env = loadEnv(mode, __dirname)
-  // const viteEnv = buildEnv(env)
   return {
     resolve: {
       alias: {
@@ -27,10 +27,12 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     },
     plugins: [
       commonjs(),
-      AutoImportTypes(),
+      AutoImportTypes({
+        dtsDir: 'types'
+      }),
       PiniaAutoRefs(),
       AutoImport({
-        dts: 'src/auto-imports.d.ts', // 可以自定义文件生成的位置，默认是根目录下
+        dts: 'types/auto-imports.d.ts', // 可以自定义文件生成的位置，默认是根目录下
         imports: [
           'vue',
           'uni-app',
@@ -53,13 +55,13 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
         // resolvers: [VantResolver()],
         extensions: ['vue'],
         // 配置文件生成位置
-        dts: 'src/components.d.ts'
+        dts: 'types/components.d.ts'
       }),
       uni(),
       Unocss()
     ],
     server: {
-      port: 3000,
+      port: 3001,
       open: true, //自动打开
       base: './ ', //生产环境路径
       proxy: {
