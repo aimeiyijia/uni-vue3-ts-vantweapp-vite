@@ -24,6 +24,7 @@ specifiers:
   '@vue/eslint-config-typescript': 7.0.0
   auto-import-types: 0.0.4
   autoprefixer: 10.4.4
+  await-to-js: ^3.0.0
   clone-deep: ^4.0.1
   comment-json: ^4.2.3
   commitizen: 4.2.4
@@ -78,6 +79,7 @@ dependencies:
   '@dcloudio/uni-mp-toutiao': 3.0.0-alpha-3040720220422004_postcss@8.4.21+vue@3.2.33
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3040720220422004_postcss@8.4.21+vue@3.2.33
   '@dcloudio/uni-quickapp-webview': 3.0.0-alpha-3040720220422004_postcss@8.4.21+vue@3.2.33
+  await-to-js: 3.0.0
   clone-deep: 4.0.1
   crypto-js: 4.1.1
   luch-request: 3.0.8
@@ -2053,6 +2055,11 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /await-to-js/3.0.0:
+    resolution: {integrity: sha512-zJAaP9zxTcvTHRlejau3ZOY4V7SRpiByf3/dxx2uyKxxor19tpmpV2QRsTKikckwhaPmr2dVpxxMr7jOCYVp5g==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /axios/0.26.1:
     resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}

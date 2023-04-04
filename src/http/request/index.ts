@@ -29,7 +29,7 @@ export function $get(url, data, contentType) {
 export function $delete(url, data, contentType) {
   const ct = contentType || FORMType
   return instance.request({
-    method: 'delete',
+    method: 'DELETE',
     url: url,
     params: data,
     header: {
@@ -40,43 +40,9 @@ export function $delete(url, data, contentType) {
 export function $put(url, data, contentType) {
   const ct = contentType || JSONType
   return instance.request({
-    method: 'put',
+    method: 'PUT',
     url: url,
     data: data,
-    header: { 'Content-Type': ct }
-  })
-}
-export function $getBlob(url, data, contentType) {
-  const ct = contentType || 'application/x-www-form-urlencoded;charset=UTF-8'
-  return instance.request({
-    method: 'get',
-    url: url,
-    params: data,
-    responseType: 'blob',
-    header: {
-      'Content-Type': ct
-    }
-  })
-}
-
-export function $postBlob(url, data, contentType) {
-  const ct = contentType || JSONType
-  return instance.request({
-    method: 'post',
-    url: url,
-    data: data,
-    responseType: 'blob',
-    header: { 'Content-Type': ct }
-  })
-}
-
-export function $arraybuffer(url, data, contentType) {
-  const ct = contentType || JSONType
-  return instance.request({
-    method: 'post',
-    url: url,
-    data: data,
-    responseType: 'arraybuffer',
     header: { 'Content-Type': ct }
   })
 }

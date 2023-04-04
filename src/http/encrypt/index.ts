@@ -1,13 +1,10 @@
 import cloneDeep from 'clone-deep'
 import CryptoJS from 'crypto-js'
-import isString from 'lodash.isstring'
-// 加密配置
-const SECRET = 'd2e47b46e2b1987032aab5a82862119f'
-const iv = '96384232'
-const { isEncrypt, downloadUrl } = pcglConfig
-console.log(pcglConfig, 'hahahahahah')
-// 定义不需要被处理的接口
-const whiteList = ['/file/upload', downloadUrl]
+
+import { isString } from '../../utils/is'
+import noencryptLists from '../white/noencrypt'
+import { IV, SECRET } from './constant'
+const { VITE_isEncrypt } = import.meta.env
 
 // 匹配加密方式
 const encryptType = {
@@ -20,7 +17,7 @@ const encryptType = {
 // 加密
 export function encrypt(word, needParse = true, needReplace = false, isUrl = true) {
   let value
-  if (!isEncrypt) {
+  if (!VITE_isEncrypt) {
     return word
   }
   if (needParse) {
@@ -30,7 +27,7 @@ export function encrypt(word, needParse = true, needReplace = false, isUrl = tru
   }
 
   const keys = CryptoJS.enc.Utf8.parse(SECRET)
-  const ivs = CryptoJS.enc.Utf8.parse(iv)
+  const ivs = CryptoJS.enc.Utf8.parse(IV)
   let encrypted = CryptoJS.TripleDES.encrypt(value, keys, {
     iv: ivs,
     mode: CryptoJS.mode.CBC,
@@ -48,7 +45,7 @@ export function encrypt(word, needParse = true, needReplace = false, isUrl = tru
 // 解密
 export function decrypted(params) {
   const keys = CryptoJS.enc.Utf8.parse(SECRET)
-  const ivs = CryptoJS.enc.Utf8.parse(iv)
+  const ivs = CryptoJS.enc.Utf8.parse(IV)
   return CryptoJS.TripleDES.decrypt(params, keys, {
     iv: ivs,
     mode: CryptoJS.mode.CBC,
@@ -155,18 +152,13 @@ function encryptPost(httpConfig) {
 
 // 判断是不是在白名单中
 function isInWhiteLists(httpConfig) {
-  for (let i = 0; i < whiteList.length; i++) {
-    if (httpConfig.url.indexOf(whiteList[i]) > -1) {
-      return true
-    }
-  }
-  return false
+  return noencryptLists.includes(httpConfig.url)
 }
 
 // 加密配置
 export function goEncrypt(httpConfig) {
   // 判断是否配置了加密
-  if (!isEncrypt) {
+  if (!VITE_isEncrypt) {
     return httpConfig
   }
   console.log(httpConfig, '原始请求配置')

@@ -1,6 +1,11 @@
-export function useRequest() {
+import to from 'await-to-js'
+import { ref } from 'vue'
+export async function useRequest(fn: Promise<any>) {
+  const loading = ref(true)
+  const [err, res] = await to(fn)
+  loading.value = false
   return {
-    loading: true,
+    loading,
     code: 200,
     data: {},
     msg: '',

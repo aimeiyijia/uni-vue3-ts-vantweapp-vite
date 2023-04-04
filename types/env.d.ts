@@ -14,8 +14,7 @@ declare interface ImportMetaEnv extends ViteEnv {
 }
 
 declare interface ViteEnv {
-  VITE_USE_MOCK: Boolean
-  VITE_USE_ERUDA: Boolean
-  VITE_USE_COMPRESS: Boolean
-  VITE_USE_REPORT: Boolean
+  VITE_BASE_URL: string
+  VITE_isEncrypt: boolean
+  VITE_downloadUrl: string
 }
