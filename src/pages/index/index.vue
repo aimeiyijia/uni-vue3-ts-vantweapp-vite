@@ -2,7 +2,7 @@
   <view class="content">
     <image class="logo" src="@/assets/logo.png" />
     <view class="text-area p20">
-      <text class="title">{{ title }}</text>
+      <text class="title h2">{{ title }}</text>
       <van-button type="primary">危险按钮</van-button>
       <van-icon name="chat" dot />
       <van-rate :value="2" icon="like" void-icon="like-o" />

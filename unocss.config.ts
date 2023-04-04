@@ -1,6 +1,7 @@
 // https://github.com/unocss/unocss
 import { defineConfig, Preset, presetAttributify, presetIcons, presetUno, Rule } from 'unocss'
 import presetWeapp from 'unocss-preset-weapp'
+import { transformerAttributify, transformerClass } from 'unocss-preset-weapp/transformer'
 
 import presetRemToRpx from './preset-rem-to-rpx'
 
@@ -53,6 +54,17 @@ export const createConfig = () => {
         baseFontSize: 4
       }) as Preset
     ],
+    transformers: [
+      // https://github.com/MellowCo/unocss-preset-weapp/tree/main/src/transformer/transformerAttributify
+      transformerAttributify(),
+
+      // https://github.com/MellowCo/unocss-preset-weapp/tree/main/src/transformer/transformerClass
+      transformerClass()
+    ],
+    theme: {
+      // 解决小程序不支持 * 选择器
+      preflightRoot: ['page,::before,::after']
+    },
     include: [/\.vue$/, /pages.json$/]
   })
 }
