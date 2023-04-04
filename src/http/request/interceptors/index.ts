@@ -10,6 +10,7 @@ const userStore = useUserStore()
 // 请求拦截器
 export function requestInterceptors(config: HttpRequestConfig) {
   console.log(config, '请求配置')
+  console.log(goEncrypt, '加密')
   const { url } = config
   const { token, platform } = userStore
 
@@ -20,7 +21,8 @@ export function requestInterceptors(config: HttpRequestConfig) {
   }
   // 白名单
   if (url && whiteLists.includes(url)) {
-    return goEncrypt(config)
+    // return goEncrypt(config)
+    return config
   }
 
   // 请求认证
@@ -31,7 +33,8 @@ export function requestInterceptors(config: HttpRequestConfig) {
     console.log('这里写登录失效或未登录逻辑')
   }
 
-  return goEncrypt(config)
+  // return goEncrypt(config)
+  return config
 }
 // 请求拦截器 错误处理
 export function requestError(error: HttpRequestConfig): Promise<HttpRequestConfig> {

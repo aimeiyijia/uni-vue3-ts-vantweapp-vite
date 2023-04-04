@@ -12,4 +12,5 @@ onHide(() => {
 </script>
 <style lang="scss">
 @import 'styles/index.scss';
+@import './uni.scss';
 </style>

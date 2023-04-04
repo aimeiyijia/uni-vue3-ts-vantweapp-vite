@@ -13,7 +13,9 @@
 </template>
 
 <script setup lang="ts">
+import { httpGetProvince } from '@/api/user'
 import { useTitle } from '@/hooks/useTitle'
+import { useRequest } from '@/http/hooks'
 import { useRoute, useRouter } from '@/plugins/uni-router'
 
 const curRouter = useRouter()
@@ -22,6 +24,11 @@ const curRoute = useRoute()
 
 console.log(curRouter, 'curRouter 页面 index')
 console.log(curRoute.path, 'curRoute 页面 index')
+
+onMounted(async () => {
+  const resp = await httpGetProvince({})
+  console.log(resp, '省份信息')
+})
 
 // setTimeout(() => {
 //   console.log('即将跳转路由')

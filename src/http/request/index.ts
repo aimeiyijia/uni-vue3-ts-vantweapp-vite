@@ -14,7 +14,7 @@ export function $post(url, data, contentType) {
     header: { 'Content-Type': ct }
   })
 }
-export function $get(url, data, contentType) {
+export function $get(url: string, data: any, contentType?: string) {
   const ct = contentType || JSONType
   return instance.request({
     method: 'GET',

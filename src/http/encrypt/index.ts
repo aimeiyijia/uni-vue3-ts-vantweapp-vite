@@ -1,5 +1,5 @@
-import cloneDeep from 'clone-deep'
 import CryptoJS from 'crypto-js'
+import cloneDeep from 'lodash.clonedeep'
 
 import { isString } from '../../utils/is'
 import noencryptLists from '../white/noencrypt'
