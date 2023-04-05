@@ -155,6 +155,7 @@ module.exports = {
   globals: {
     uni: true,
     ROUTES: true,
-    npmPackageInfo: true
+    npmPackageInfo: true,
+    WechatMiniprogram: true
   }
 }

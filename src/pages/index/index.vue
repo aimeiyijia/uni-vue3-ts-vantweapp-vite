@@ -9,11 +9,14 @@
       <template #button>
         <van-button size="small" type="primary"> 发送验证码 </van-button>
       </template>
+      <template #label> hahha </template>
     </p-vant-field>
     <van-field use-button-slot :value="true">
+      <template #label> hahha </template>
       <template #button>
         <van-button size="small" type="primary"> 发送验证码 </van-button>
       </template>
+      测试
     </van-field>
   </view>
 </template>
