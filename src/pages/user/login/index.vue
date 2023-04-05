@@ -26,8 +26,8 @@
       <view
         :class="[
           'login__form',
-          loginType === 'face' ? 'login-area__left-actived' : 'login-area__right--actived',
-          isShowFace ? '' : 'all-actived'
+          loginType === 'face' ? 'login-area__left--actived' : 'login-area__right--actived',
+          isShowFace ? '' : 'all--actived'
         ]"
       >
         <!-- 刷脸登录 -->
@@ -256,16 +256,16 @@ function registerAction() {}
   border-top-right-radius: 0;
   height: 740rpx;
   background-color: #fff;
-  &.leftactived {
+  &.login-area__left--actived {
     border-top-right-radius: 24rpx;
   }
-}
-.all--actived {
-  border-top-left-radius: 24rpx;
-  border-top-right-radius: 24rpx;
-}
-.login__form.login-area__right-actived {
-  border-top-left-radius: 24rpx;
+  &.login-area__right--actived {
+    border-top-left-radius: 24rpx;
+  }
+  &.all--actived {
+    border-top-left-radius: 24rpx;
+    border-top-right-radius: 24rpx;
+  }
 }
 .van-icon__image {
   vertical-align: top;
