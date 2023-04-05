@@ -34,7 +34,7 @@
         <view v-if="isShowFace && loginType === 'face'" class="login__form--field-container">
           <view class="login__form--field">
             <van-field
-              :value="username"
+              :value="faceLoginForm.username"
               size="large"
               placeholder="请输入姓名"
               left-icon="@/assets/images/ic_register_name.png"
@@ -44,7 +44,7 @@
           </view>
           <view class="login__form--field">
             <van-field
-              :value="idcard"
+              :value="faceLoginForm.idcard"
               size="large"
               placeholder="请输入证件号码"
               left-icon="@/assets/images/ic_register_zjhm.png"
@@ -58,7 +58,7 @@
         <view v-if="!isShowFace || loginType === 'acc'" class="login__form--field-container">
           <view class="login__form--field">
             <van-field
-              :value="accname"
+              :value="accLoginForm.accname"
               size="large"
               :placeholder="namePlaceholder"
               left-icon="@/assets/images/ic_register_name.png"
@@ -68,7 +68,7 @@
           </view>
           <view class="login__form--field">
             <van-field
-              :value="password"
+              :value="accLoginForm.password"
               size="large"
               placeholder="请输入密码"
               left-icon="@/assets/images/ic_register_password.png"
@@ -108,14 +108,34 @@
 const systemName = ref('破产平台')
 const isShowFace = ref(true)
 const loginType = ref('acc')
-const username = ref('')
-const idcard = ref('')
-const accname = ref('')
 const namePlaceholder = ref('请输入账号/手机号码/证件号码')
-const password = ref('')
-function handleLoginTypeClick() {}
-function onFieldChange() {}
-function handleLogin() {}
+const faceLoginForm = reactive({
+  username: '',
+  idcard: ''
+})
+const accLoginForm = reactive({
+  accname: '',
+  password: ''
+})
+function onFieldChange(e) {
+  const value = e.detail
+  const { dataset } = e.currentTarget
+  const { type } = dataset
+  if (loginType.value === 'acc') {
+    Object.assign(accLoginForm, {
+      [type]: value
+    })
+  }
+  console.log(e, '表单变化')
+}
+function handleLoginTypeClick(e) {
+  console.log(e, '登录类型变化')
+  const { type } = e.currentTarget.dataset
+  loginType.value = type
+}
+function handleLogin() {
+  console.log(accLoginForm, '账号登录表单')
+}
 function registerAction() {}
 </script>
 
