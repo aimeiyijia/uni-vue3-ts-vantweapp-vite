@@ -1,13 +1,6 @@
 {
   "pages": [
     {
-      "name": "index",
-      "path": "pages/index/index",
-      "style": {
-        "navigationBarTitleText": "首页"
-      }
-    },
-    {
       "name": "Login",
       "path": "pages/user/login/index",
       "style": {
@@ -15,6 +8,21 @@
         "navigationStyle": "custom"
       }
     },
+    {
+      "name": "index",
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    // {
+    //   "name": "Login",
+    //   "path": "pages/user/login/index",
+    //   "style": {
+    //     "navigationBarTitleText": "登录",
+    //     "navigationStyle": "custom"
+    //   }
+    // },
     {
       "name": "profile",
       "path": "pages/profile/profile",

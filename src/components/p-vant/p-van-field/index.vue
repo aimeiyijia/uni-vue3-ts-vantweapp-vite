@@ -1,5 +1,11 @@
 <template>
-  <van-field :value="modelValue" v-bind="$attrs" @input="handleInput" @change="handleChange">
+  <van-field
+    :class="[hiddenLabel ? `hidden-label` : '']"
+    :value="modelValue"
+    v-bind="$attrs"
+    @input="handleInput"
+    @change="handleChange"
+  >
     <template v-for="item in buildinSlots" #[item]>
       <slot v-if="$slots.button" :name="item"></slot>
     </template>
@@ -7,7 +13,16 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps(['modelValue'])
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: ''
+  },
+  hiddenLabel: {
+    type: Boolean,
+    default: false
+  }
+})
 const emit = defineEmits(['update:modelValue', 'change'])
 
 const buildinSlots = ['button', 'label']
@@ -25,5 +40,19 @@ function handleChange(e) {
   emit('change')
 }
 </script>
+<script lang="ts">
+export default {
+  options: {
+    styleIsolation: 'shared'
+  }
+}
+</script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.hidden-label {
+  color: red;
+  :deep(.van-cell__title) {
+    display: none;
+  }
+}
+</style>

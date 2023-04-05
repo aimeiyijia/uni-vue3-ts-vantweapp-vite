@@ -33,23 +33,21 @@
         <!-- 刷脸登录 -->
         <view v-if="isShowFace && loginType === 'face'" class="login__form--field-container">
           <view class="login__form--field">
-            <van-field
-              :value="faceLoginForm.username"
-              size="large"
+            <p-van-field
+              v-model="faceLoginForm.username"
+              :hidden-label="true"
               placeholder="请输入姓名"
+              size="large"
               left-icon="@/assets/images/ic_register_name.png"
-              data-type="username"
-              @change="onFieldChange"
             />
           </view>
           <view class="login__form--field">
-            <van-field
-              :value="faceLoginForm.idcard"
-              size="large"
+            <p-van-field
+              v-model="faceLoginForm.idcard"
+              :hidden-label="true"
               placeholder="请输入证件号码"
+              size="large"
               left-icon="@/assets/images/ic_register_zjhm.png"
-              data-type="idcard"
-              @change="onFieldChange"
             />
           </view>
         </view>
@@ -57,24 +55,22 @@
         <!-- 账号密码 -->
         <view v-if="!isShowFace || loginType === 'acc'" class="login__form--field-container">
           <view class="login__form--field">
-            <van-field
-              :value="accLoginForm.accname"
-              size="large"
+            <p-van-field
+              v-model="accLoginForm.accname"
+              :hidden-label="true"
               :placeholder="namePlaceholder"
-              left-icon="@/assets/images/ic_register_name.png"
-              data-type="accname"
-              @change="onFieldChange"
+              size="large"
+              left-icon="~@/assets/images/ic_register_name.png"
             />
           </view>
           <view class="login__form--field">
-            <van-field
-              :value="accLoginForm.password"
-              size="large"
+            <p-van-field
+              v-model="accLoginForm.password"
+              :hidden-label="true"
               placeholder="请输入密码"
               left-icon="@/assets/images/ic_register_password.png"
+              size="large"
               password="true"
-              data-type="password"
-              @change="onFieldChange"
             />
           </view>
           <view class="find-password">
@@ -105,6 +101,7 @@
 </template>
 
 <script setup lang="ts">
+import PVantField from '@/components/p-vant/p-van-field/index.vue'
 const systemName = ref('破产平台')
 const isShowFace = ref(true)
 const loginType = ref('acc')

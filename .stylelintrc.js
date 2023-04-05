@@ -35,8 +35,8 @@ module.exports = {
         initial: bemSelector
       },
       utilitySelectors: '^.util-[a-z]+$',
-      ignoreSelectors: ['^.icon-', '^.wx-'],
-      ignoreCustomProperties: [],
+      ignoreSelectors: ['^.icon-', '^.wx-', '^:deep', '^.van-'],
+      ignoreCustomProperties: ['^:deep'],
       implicitComponents: true
     },
     indentation: 2,
@@ -70,6 +70,12 @@ module.exports = {
       }
     ],
     'selector-type-no-unknown': [true, { ignoreTypes: ['page', 'radio', 'checkbox'] }],
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['deep']
+      }
+    ],
     'number-leading-zero': 'always',
     'unit-no-unknown': [true, { ignoreUnits: ['rpx'] }],
     'declaration-block-no-redundant-longhand-properties': null,
