@@ -7,12 +7,12 @@
 const bemSelector = (block, presetOptions) => {
   const ns = presetOptions && presetOptions.namespace ? `${presetOptions.namespace}-` : ''
   const WORD = '[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*'
-  var ampersand = '(&?)*'
+  var ampersand = '(?:&)*'
   const element = `(?:__${WORD})?`
   const modifier = `(?:--${WORD}){0,2}`
   const attribute = '(?:\\[.+\\])?'
 
-  const regex = ampersand + '\\.' + ns + block + element + modifier + attribute + '$'
+  const regex = ampersand + '\\.' + WORD + element + modifier + attribute + '$'
   return new RegExp(regex)
 }
 module.exports = {

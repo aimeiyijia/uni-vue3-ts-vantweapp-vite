@@ -3,14 +3,14 @@
     <image class="logo" src="@/assets/logo.png" />
     <view class="text-area p20">
       <text class="title h2">{{ title }}</text>
-      <van-button type="primary">危险按钮</van-button>
+      <van-button type="primary" @click="handleButton">危险按钮</van-button>
       <van-icon name="chat" dot />
       <van-rate :value="2" icon="like" void-icon="like-o" />
     </view>
     <view>1234</view>
     <view @click="changeTitle">changeTitle</view>
 
-    <van-tabbar :active="0">
+    <van-tabbar :active="active" @change="onChange">
       <van-tabbar-item icon="home-o">标签</van-tabbar-item>
       <van-tabbar-item icon="search">标签</van-tabbar-item>
       <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
@@ -43,6 +43,15 @@ onMounted(async () => {
 // }, 2000)
 
 const { title, changeTitle } = useTitle()
+
+function handleButton() {
+  console.log('按钮点击')
+}
+const active = ref(0)
+function onChange(event) {
+  console.log('改变', event)
+  active.value = event.detail
+}
 </script>
 
 <style scoped lang="scss">

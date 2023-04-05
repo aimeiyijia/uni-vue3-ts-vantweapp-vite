@@ -54,13 +54,13 @@ export const createConfig = () => {
         baseFontSize: 4
       }) as Preset
     ],
-    transformers: [
-      // https://github.com/MellowCo/unocss-preset-weapp/tree/main/src/transformer/transformerAttributify
-      transformerAttributify(),
+    // transformers: [
+    //   // https://github.com/MellowCo/unocss-preset-weapp/tree/main/src/transformer/transformerAttributify
+    //   transformerAttributify(),
 
-      // https://github.com/MellowCo/unocss-preset-weapp/tree/main/src/transformer/transformerClass
-      transformerClass()
-    ],
+    //   // https://github.com/MellowCo/unocss-preset-weapp/tree/main/src/transformer/transformerClass
+    //   transformerClass()
+    // ],
     theme: {
       // 解决小程序不支持 * 选择器
       preflightRoot: ['page,::before,::after']

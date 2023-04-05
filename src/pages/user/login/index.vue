@@ -1,80 +1,80 @@
 <template>
   <view class="login__container">
-    <image src="/pages/images/ic_login_bg.jpeg" class="login__bg-img" />
+    <image src="@/assets/images/ic_login_bg.jpeg" class="login__bg-img" />
     <view class="login__top">
-      <image src="/pages/images/ic_legal_emblem.png" mode="" class="login__logo-img" />
+      <image src="@/assets/images/ic_legal_emblem.png" mode="" class="login__logo-img" />
       <text class="login__platform-name">{{ systemName }}</text>
     </view>
     <view class="login__middle">
-      <view class="login__switch-type" wx:if="{{ isShowFace }}">
+      <view v-if="isShowFace" class="login__switch-type">
         <view
-          class="login__type left {{ loginType === 'face' ? 'type-actived' : '' }}"
+          :class="['login__type', 'login-area__left', loginType === 'face' ? 'type-actived' : '']"
           data-type="face"
-          bindtap="handleLoginTypeClick"
+          @click="handleLoginTypeClick"
         >
           <text class="login__type--desc">刷脸登录</text>
-          <view class="after"></view>
-          <view class="before"></view>
         </view>
 
         <view
-          class="login__type right {{ loginType === 'acc' ? 'type-actived' : '' }}"
+          :class="['login__type', 'login-area__right', loginType === 'acc' ? 'type-actived' : '']"
           data-type="acc"
-          bindtap="handleLoginTypeClick"
+          @click="handleLoginTypeClick"
         >
           <text class="login__type--desc">账号密码</text>
-          <view class="after"></view>
-          <view class="before"></view>
         </view>
       </view>
       <view
-        class="login__form {{ loginType === 'face' ? 'left-actived' : 'right-actived' }} {{ isShowFace ? '' : 'all-actived' }} "
+        :class="[
+          'login__form',
+          loginType === 'face' ? 'login-area__left-actived' : 'login-area__right--actived',
+          isShowFace ? '' : 'all-actived'
+        ]"
       >
         <!-- 刷脸登录 -->
-        <view class="login__form--field-container" wx:if="{{isShowFace && loginType === 'face' }}">
+        <view v-if="isShowFace && loginType === 'face'" class="login__form--field-container">
           <view class="login__form--field">
             <van-field
-              value="{{ username }}"
+              :value="username"
               size="large"
               placeholder="请输入姓名"
-              left-icon="/pages/images/ic_register_name.png"
+              left-icon="@/assets/images/ic_register_name.png"
               data-type="username"
-              bind:change="onFieldChange"
+              @change="onFieldChange"
             />
           </view>
           <view class="login__form--field">
             <van-field
-              value="{{ idcard }}"
+              :value="idcard"
               size="large"
               placeholder="请输入证件号码"
-              left-icon="/pages/images/ic_register_zjhm.png"
+              left-icon="@/assets/images/ic_register_zjhm.png"
               data-type="idcard"
-              bind:change="onFieldChange"
+              @change="onFieldChange"
             />
           </view>
         </view>
 
         <!-- 账号密码 -->
-        <view class="login__form--field-container" wx:if="{{ !isShowFace || loginType === 'acc' }}">
+        <view v-if="!isShowFace || loginType === 'acc'" class="login__form--field-container">
           <view class="login__form--field">
             <van-field
-              value="{{ accname }}"
+              :value="accname"
               size="large"
-              placeholder="{{namePlaceholder}}"
-              left-icon="/pages/images/ic_register_name.png"
+              :placeholder="namePlaceholder"
+              left-icon="@/assets/images/ic_register_name.png"
               data-type="accname"
-              bind:change="onFieldChange"
+              @change="onFieldChange"
             />
           </view>
           <view class="login__form--field">
             <van-field
-              value="{{ password }}"
+              :value="password"
               size="large"
               placeholder="请输入密码"
-              left-icon="/pages/images/ic_register_password.png"
-              password="{{true}}"
+              left-icon="@/assets/images/ic_register_password.png"
+              password="true"
               data-type="password"
-              bind:change="onFieldChange"
+              @change="onFieldChange"
             />
           </view>
           <view class="find-password">
@@ -89,10 +89,10 @@
             color="#589af5"
             custom-style="border-radius: 8rpx;box-shadow: 0 0 6px 0 #589af5;margin-bottom: 36rpx"
             size="large"
-            bind:click="handleLogin"
+            @click="handleLogin"
             >登录</van-button
           >
-          <text class="register-user" bindtap="registerAction">注册新用户</text>
+          <text class="register-user" @click="registerAction">注册新用户</text>
         </view>
       </view>
     </view>
@@ -104,7 +104,20 @@
   </view>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const systemName = ref('破产平台')
+const isShowFace = ref(true)
+const loginType = ref('acc')
+const username = ref('')
+const idcard = ref('')
+const accname = ref('')
+const namePlaceholder = ref('请输入账号/手机号码/证件号码')
+const password = ref('')
+function handleLoginTypeClick() {}
+function onFieldChange() {}
+function handleLogin() {}
+function registerAction() {}
+</script>
 
 <style scoped lang="scss">
 .login__container,
@@ -113,14 +126,14 @@
   width: 100%;
   height: 100vh;
 }
-.login__container-grayscale {
+.login__container--grayscale {
   filter: grayscale(100%);
 }
 .login__container {
   position: relative;
   padding-top: 160rpx;
   color: #fff;
-  &.login__bg-img {
+  .login__bg-img {
     position: absolute;
     left: 0;
     top: 0;
@@ -169,17 +182,30 @@
   font-weight: bold;
   font-size: 38rpx;
 }
-.left,
-.right {
+.login-area__left,
+.login-area__right {
   position: relative;
   color: #fff;
+  &.type-actived {
+    color: rgb(62, 136, 239);
+    &::before {
+      position: absolute;
+      right: -36rpx;
+      top: 0;
+      z-index: -1;
+      width: 90rpx;
+      height: 90rpx;
+      background: #fff;
+      content: '';
+    }
+  }
 }
-.left.type-actived,
-.right.type-actived {
+/* .login-area__left.type-actived,
+.login-area__right.type-actived {
   color: rgb(62, 136, 239);
-}
-.left.type-actived .after,
-.right.type-actived .after {
+} */
+.login-area__left.type-actived::after,
+.login-area__right.type-actived::after {
   position: absolute;
   left: 0;
   right: 0;
@@ -192,28 +218,17 @@
   background: #fff;
   content: '';
 }
-.left.type-actived .before,
-.right.type-actived .before {
-  position: absolute;
-  right: -36rpx;
-  top: 0;
-  z-index: -1;
-  width: 90rpx;
-  height: 90rpx;
-  background: #fff;
-  content: '';
-}
-.left.type-actived .after {
+.login-area__left.type-actived::after {
   transform: skewX(24deg);
 }
-.left.type-actived .before {
+.login-area__left.type-actived::before {
   left: -36rpx;
   border-top-left-radius: 18rpx;
 }
-.right.type-actived .after {
+.login-area__right.type-actived::after {
   transform: skewX(-24deg);
 }
-.right.type-actived .before {
+.login-area__right.type-actived::before {
   right: -36rpx;
   border-top-right-radius: 24rpx;
 }
@@ -228,11 +243,11 @@
     border-top-right-radius: 24rpx;
   }
 }
-.all-actived {
+.all--actived {
   border-top-left-radius: 24rpx;
   border-top-right-radius: 24rpx;
 }
-.login__form.right-actived {
+.login__form.login-area__right-actived {
   border-top-left-radius: 24rpx;
 }
 .van-icon__image {
@@ -254,9 +269,9 @@
 }
 .login__form--opera-container {
   text-align: center;
-}
-.login__form--opera-container .register-user {
-  font-size: 34rpx;
-  color: #4892f5;
+  .register-user {
+    font-size: 34rpx;
+    color: #4892f5;
+  }
 }
 </style>
