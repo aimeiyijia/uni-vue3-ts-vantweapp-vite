@@ -1,56 +1,53 @@
 <template>
   <view class="content">
-    <image class="logo" src="@/assets/logo.png" />
-    <view class="text-area p20">
-      <text class="title h2">{{ title }}</text>
-      <van-button type="primary" @click="handleButton">危险按钮</van-button>
-      <van-icon name="chat" dot />
-      <van-rate :value="2" icon="like" void-icon="like-o" />
-    </view>
-    <view>1234</view>
-    <view @click="changeTitle">changeTitle</view>
-
-    <van-tabbar :active="active" @change="onChange">
-      <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="search">标签</van-tabbar-item>
-      <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
-    </van-tabbar>
+    <p-vant-field
+      v-model="username"
+      use-button-slot
+      placeholder="请输入用户名"
+      @change="handleChange"
+    >
+      <template #button>
+        <van-button size="small" type="primary"> 发送验证码 </van-button>
+      </template>
+    </p-vant-field>
+    <van-field use-button-slot :value="true">
+      <template #button>
+        <van-button size="small" type="primary"> 发送验证码 </van-button>
+      </template>
+    </van-field>
   </view>
 </template>
 
 <script setup lang="ts">
 import { httpGetProvince } from '@/api/user'
-import { useTitle } from '@/hooks/useTitle'
-import { useRequest } from '@/http/hooks'
+import PVantField from '@/components/p-vant/p-van-field/index.vue'
 import { useRoute, useRouter } from '@/plugins/uni-router'
 
-const curRouter = useRouter()
+// const curRouter = useRouter()
 
-const curRoute = useRoute()
+// const curRoute = useRoute()
 
-console.log(curRouter, 'curRouter 页面 index')
-console.log(curRoute.path, 'curRoute 页面 index')
+// console.log(curRouter, 'curRouter 页面 index')
+// console.log(curRoute.path, 'curRoute 页面 index')
 
-onMounted(async () => {
-  const resp = await httpGetProvince({})
-  console.log(resp, '省份信息')
-})
+// onMounted(async () => {
+//   const resp = await httpGetProvince({})
+//   console.log(resp, '省份信息')
+// })
 
 // setTimeout(() => {
 //   console.log('即将跳转路由')
 //   curRouter.push('/pages/test/test')
 // }, 2000)
 
-const { title, changeTitle } = useTitle()
+const username = ref('1234')
 
 function handleButton() {
   console.log('按钮点击')
 }
 const active = ref(0)
-function onChange(event) {
-  console.log('改变', event)
-  active.value = event.detail
+function handleChange(event) {
+  console.log(username.value, '当前的值')
 }
 </script>
 
@@ -60,6 +57,7 @@ function onChange(event) {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: green;
 }
 .logo {
   margin-left: auto;
