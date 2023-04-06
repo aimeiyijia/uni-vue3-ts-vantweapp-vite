@@ -18,6 +18,7 @@
       </template>
       测试
     </van-field>
+    <wx-test></wx-test>
   </view>
 </template>
 

@@ -1,11 +1,19 @@
 {
   "pages": [
+    // {
+    //   "name": "Login",
+    //   "path": "pages/user/login/index",
+    //   "style": {
+    //     "navigationBarTitleText": "登录",
+    //     "navigationStyle": "custom"
+    //   }
+    // },
     {
-      "name": "Login",
-      "path": "pages/user/login/index",
+      "name": "list",
+      "path": "pages/list/index",
       "style": {
-        "navigationBarTitleText": "登录",
-        "navigationStyle": "custom"
+        "navigationBarTitleText": "列表页面",
+        "navigationBarBackgroundColor": "#f0f4f7"
       }
     },
     {
@@ -51,6 +59,7 @@
     "navigationBarBackgroundColor": "#1AA86C",
     "backgroundColor": "#F8F8F8",
     "usingComponents": {
+      "custom-pull-down": "/wxcomponents/customPullDown/index",
       "van-button": "/wxcomponents/vant/button/index",
       "van-cell": "/wxcomponents/vant/cell/index",
       "van-cell-group": "/wxcomponents/vant/cell-group/index",

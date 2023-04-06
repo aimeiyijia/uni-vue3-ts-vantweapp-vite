@@ -1,0 +1,36 @@
+<!--component/index.wxml-->
+<!-- scroll-into-view="{{scrollIntoView}}" -->
+<!-- scroll-top="{{pageScrollViewTop}}" -->
+
+<wxs module="pullDown" src="./pullDown.wxs"></wxs>
+<view class="pull-down">
+  <scroll-view
+    refresher-enabled
+    scroll-y
+    scroll-with-animation
+    refresher-default-style="none"
+    refresher-triggered="{{refresherTriggered}}"
+    bindrefresherpulling="{{pullDown.onContentPull}}"
+    bindrefresherrestore="{{pullDown.onRestore}}"
+    bindrefresherabort="{{pullDown.onAbort}}"
+    bindrefresherrefresh="{{pullDown.onRefresh}}"
+    bindscrolltolower="onReachBottom"
+    class="scroll-box"
+  >
+    <!-- 自定义下拉刷新动画 -->
+    <view slot="refresher" class="custom-refresh-zone" data-threshold="{{changeBoundary}}">
+      <view class="refresh-before-trigger">
+        <slot name="refresh-before-trigger"></slot>
+      </view>
+      <view class="refresh-after-trigger">
+        <slot name="refresh-after-trigger"></slot>
+      </view>
+      <view class="refresh-loading">
+        <slot name="refresh-loading"></slot>
+      </view>
+    </view>
+    <view class="pull-content">
+      <slot name="content"></slot>
+    </view>
+  </scroll-view>
+</view>

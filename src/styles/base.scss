@@ -7,8 +7,8 @@ body {
 }
 /* postcss-bem-linter: ignore */
 page {
-  padding-bottom: constant(safe-area-inset-bottom);
-  padding-bottom: env(safe-area-inset-bottom);
+  // padding-bottom: constant(safe-area-inset-bottom);
+  // padding-bottom: env(safe-area-inset-bottom);
   height: 100%;
   font-size: 28rpx;
   color: #333;

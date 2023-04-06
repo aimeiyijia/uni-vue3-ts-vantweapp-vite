@@ -1,0 +1,38 @@
+var refresherBefore = 'refresher-before'
+var refresherAfter = 'refresher-after'
+
+function getComponent(name, selector) {
+  return function(instance) {
+    var state = instance.getState()
+    return state[name] || (state[name] = instance.selectComponent(selector))
+  }
+}
+var getCustomRefresher = getComponent('customRefresher', '.custom-refresh-zone')
+
+module.exports = {
+  onContentPull: function (event, ownerInstance) {
+    var scrollY = event.detail.dy // 滚动距离
+
+    // 根据滚动距离切换状态
+    var customRefresher = getCustomRefresher(ownerInstance)
+    var threshold = customRefresher.getDataset().threshold
+    var isLargerThanTriggerThreshold = scrollY > threshold
+    customRefresher
+      .addClass(isLargerThanTriggerThreshold ? refresherAfter : refresherBefore)
+      .removeClass(isLargerThanTriggerThreshold ? refresherBefore : refresherAfter)
+  },
+  onRestore: function (event, ownerInstance) {
+    console.log('onRestore 自定义下拉刷新被复位');
+    ownerInstance.callMethod('onRefresherRestore', event)
+  },
+  onAbort: function (event, ownerInstance) {
+    console.log('onRestore 自定义下拉刷新被中止');
+    ownerInstance.callMethod('onRefresherAbort', event)
+  },
+  onRefresh: function (event, ownerInstance) {
+    console.log('自定义下拉刷新被触发');
+    var customRefresher = getCustomRefresher(ownerInstance)
+    customRefresher.removeClass(refresherAfter, refresherBefore)
+    ownerInstance.callMethod('onPullDownRefresh', event)
+  },
+}
