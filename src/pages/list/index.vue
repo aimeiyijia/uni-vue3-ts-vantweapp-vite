@@ -21,7 +21,7 @@
       </view>
       <view slot="refresh-after-trigger" class="custom-refresh-zone-tips-loading">释放刷新</view>
       <view slot="refresh-loading" class="custom-refresh-zone-tips-loading">加载中</view>
-      <view slot="content" class="pull-down-content">
+      <template #content>
         <view class="card-container">
           <view v-for="item in 10" class="single-card-container">
             <view class="card__title">标题</view>
@@ -34,7 +34,7 @@
                 </view>
                 <view class="main__col">
                   <text class="col__title">付款金额：</text>
-                  <text class="col__value">3000.00</text>
+                  <text class="col__value" style="color: #1989fa">3000.00</text>
                 </view>
                 <view class="main__col">
                   <text class="col__title">收款方户名：</text>
@@ -59,7 +59,7 @@
             </view>
           </view>
         </view>
-      </view>
+      </template>
     </custom-pull-down>
   </view>
 </template>
@@ -71,10 +71,11 @@ function handleTabChange(e) {}
 </script>
 
 <style scoped lang="scss">
-.custom-pull-down {
+/* .custom-pull-down {
+  margin-top: 20rpx;
   width: 100%;
   height: 100%;
-}
+} */
 .custom-refresh-zone-tips-loading {
   display: flex;
   justify-content: center;
@@ -92,13 +93,12 @@ function handleTabChange(e) {}
   background-color: #f0f4f7;
 }
 .card-container {
-  margin: 0 -20rpx;
-  padding: 12rpx 24rpx;
+  /* padding: 12rpx 0; */
 }
 .single-card-container {
   position: relative;
-  margin-top: 24rpx;
-  /* padding: 0 20rpx; */
+  margin-top: 30rpx;
+  border: 2rpx solid #fff;
   border-radius: 16rpx;
   background-color: #fff;
   box-shadow: 0rpx 0rpx 8rpx 1rpx rgba(165, 165, 165, 0.32);
@@ -147,7 +147,7 @@ function handleTabChange(e) {}
     display: flex;
     justify-content: space-between;
     .footer__item {
-      color: #aaa;
+      color: #b7b7b7;
       .item__icon {
         margin-right: 12rpx;
       }
@@ -158,6 +158,9 @@ function handleTabChange(e) {}
 }
 .tabWrapClass {
   color: red;
+}
+:deep(.van-tabs) {
+  margin-bottom: 20rpx;
 }
 :deep(.van-tabs__scroll) {
   background-color: transparent;
