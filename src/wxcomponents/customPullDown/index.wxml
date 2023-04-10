@@ -3,7 +3,7 @@
 <!-- scroll-top="{{pageScrollViewTop}}" -->
 
 <wxs module="pullDown" src="./pullDown.wxs"></wxs>
-<view class="pull-down">
+<view class="custom-pull-down-container">
   <scroll-view
     refresher-enabled
     scroll-y

@@ -9,11 +9,35 @@
     //   }
     // },
     {
+      "name": "Channel",
+      "path": "pages/tabbars/channel/index",
+      "style": {
+        "navigationBarTitleText": "频道",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "name": "Mine",
+      "path": "pages/tabbars/mine/index",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "navigationStyle": "custom"
+      }
+    },
+    // {
+    //   "name": "detail",
+    //   "path": "pages/detail/index",
+    //   "style": {
+    //     "navigationBarTitleText": "详情页面"
+    //   }
+    // },
+    {
       "name": "list",
       "path": "pages/list/index",
       "style": {
+        "navigationStyle": "custom",
         "navigationBarTitleText": "列表页面",
-        "navigationBarBackgroundColor": "#f0f4f7"
+        "navigationBarBackgroundColor": "#fff"
       }
     },
     {
@@ -57,9 +81,9 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#1AA86C",
-    "backgroundColor": "#F8F8F8",
     "usingComponents": {
       "custom-pull-down": "/wxcomponents/customPullDown/index",
+      "custom-nav-bar": "/wxcomponents/customNavBar/index",
       "van-button": "/wxcomponents/vant/button/index",
       "van-cell": "/wxcomponents/vant/cell/index",
       "van-cell-group": "/wxcomponents/vant/cell-group/index",
@@ -122,18 +146,20 @@
     }
   },
   "tabBar": {
-    "color": "#1AA86C",
-    "selectedColor": "#1AA86C",
-    "borderStyle": "white",
-    "backgroundColor": "#ffffff",
+    "color": "#909399",
+    "selectedColor": "#1989fa",
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "text": "首页"
+        "pagePath": "pages/tabbars/channel/index",
+        "iconPath": "/static/images/tabbar/channel.png",
+        "selectedIconPath": "/static/images/tabbar/channel_active.png",
+        "text": "频道"
       },
       {
-        "pagePath": "pages/profile/profile",
-        "text": "个人"
+        "pagePath": "pages/tabbars/mine/index",
+        "iconPath": "/static/images/tabbar/mine.png",
+        "selectedIconPath": "/static/images/tabbar/mine_active.png",
+        "text": "我的"
       }
     ]
   }

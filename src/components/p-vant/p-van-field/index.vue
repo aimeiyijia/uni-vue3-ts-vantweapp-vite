@@ -7,7 +7,7 @@
     @change="handleChange"
   >
     <template v-for="item in buildinSlots" #[item]>
-      <slot v-if="$slots.button" :name="item"></slot>
+      <slot v-if="$slots[item]" :name="item"></slot>
     </template>
   </van-field>
 </template>

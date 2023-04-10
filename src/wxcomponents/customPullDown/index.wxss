@@ -1,12 +1,13 @@
 /* component/customPullDown.wxss */
-.pull-down {
+.custom-pull-down-container {
   position: relative;
-  margin: 0 -20rpx;
-  width: calc(100% + 40rpx);
+  padding: 0 6rpx;
+  /* margin: 0 -20rpx;
+  width: calc(100% + 40rpx); */
   height: 100%;
 }
 .pull-content {
-  padding: 0 20rpx;
+  /* padding: 0 6rpx; */
 }
 .scroll-box {
   width: 100%;

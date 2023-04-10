@@ -16,6 +16,15 @@ console.log(ROUTES, '生成的路由')
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }: ConfigEnv) => {
   return {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // 全局添加scss变量用
+          // additionalData: '@import "@/styles/base.scss";'
+        }
+      },
+      modules: {}
+    },
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src')
@@ -70,7 +79,7 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
         '^/api': {
           target: 'http:192.168.0.0:0000', // 后端服务实际地址
           changeOrigin: true, //开启代理
-          rewrite: (path) => path.replace(/^\/api/, '')
+          rewrite: path => path.replace(/^\/api/, '')
         }
       }
     }

@@ -49,3 +49,7 @@ ts 类型声明在带来类型提示，减少编程过程中 bug 率的同时，
   chmod +x ./.husky/pre-commit
   chmod +x ./.husky/commit-msg
   ```
+
+  ### 代码热更新失效
+
+  确保页面路径未包含大写，可以使用连字符

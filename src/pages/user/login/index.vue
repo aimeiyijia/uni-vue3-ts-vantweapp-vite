@@ -86,8 +86,9 @@
             custom-style="border-radius: 8rpx;box-shadow: 0 0 6px 0 #589af5;margin-bottom: 36rpx"
             size="large"
             @click="handleLogin"
-            >登录</van-button
           >
+            登录
+          </van-button>
           <text class="register-user" @click="registerAction">注册新用户</text>
         </view>
       </view>
@@ -273,7 +274,7 @@ function registerAction() {}
 .login__form--field-container {
   margin-bottom: 42rpx;
   padding-top: 64rpx;
-  height: 360rpx;
+  height: 420rpx;
 }
 .login__form--field {
   flex: 1;

@@ -9,6 +9,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ImgTip: typeof import('./../src/components/ImgTip/index.vue')['default']
+    NavList: typeof import('./../src/components/NavList/index.vue')['default']
     PVanField: typeof import('./../src/components/p-vant/p-van-field/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
