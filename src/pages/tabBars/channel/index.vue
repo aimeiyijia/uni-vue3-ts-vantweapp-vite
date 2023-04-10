@@ -1,6 +1,14 @@
 <template>
   <view class="page-container channel-page">
-    <van-image width="100%" height="300rpx" use-loading-slot :src="iconChannelInfo">
+    <image class="channel__top-bg" src="@/assets/images/channel/channel-top-bg.png"></image>
+    <van-image
+      class="channel__banners"
+      width="100%"
+      height="300rpx"
+      use-loading-slot
+      custom-class="hahhaha"
+      :src="iconChannelInfo"
+    >
       <template #loading>
         <van-loading type="spinner" size="20" vertical />
       </template>
@@ -11,7 +19,7 @@
       <nav-list :nav-list="funcsList" />
     </view>
   </view>
-  <van-dialog use-slot title="标题" show="{{ show }}" confirm-button-text="马上去修改">
+  <van-dialog use-slot title="标题" :show="show" confirm-button-text="马上去修改">
     <image src="https://img.yzcdn.cn/vant/cat.jpeg" />
   </van-dialog>
 </template>
@@ -25,7 +33,7 @@ import iconKnowledge from '@/assets/images/channel/icon_knowledge.png'
 import iconMeeting from '@/assets/images/channel/icon_meeting.png'
 onMounted(() => {})
 
-const show = ref(true)
+const show = ref(false)
 
 const funcsList = reactive([
   {
@@ -48,23 +56,35 @@ const funcsList = reactive([
   }
 ])
 </script>
+<script lang="ts">
+export default {
+  options: { styleIsolation: 'shared', addGlobalClass: true, externalClasses: ['custom-class'] }
+}
+</script>
 
 <style lang="scss" scoped>
 .channel-page {
-  .show-img {
-    /* height: 248rpx; */
-    margin: 24rpx 0 18rpx;
-    border-radius: 12rpx;
-  }
-  .show-img,
-  .grid-nav {
+  overflow: hidden;
+  position: relative;
+  padding: 0 40rpx;
+  background-color: #f7f7f7;
+  .channel__top-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
+    height: 680rpx;
+  }
+  .channel__banners {
+    :deep(.van-image) {
+      margin-top: 180rpx;
+    }
   }
   .channel-funcs {
     overflow: hidden;
-    margin: auto;
+    margin-top: 14rpx;
     padding-bottom: 20rpx;
-    border-radius: 16rpx;
+    border-radius: 20rpx;
     background-color: #fff;
     .funcs__title {
       padding: 20rpx;
