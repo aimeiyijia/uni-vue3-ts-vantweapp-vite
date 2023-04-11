@@ -153,6 +153,7 @@ module.exports = {
     'no-async-promise-executor': 'warn'
   },
   globals: {
+    wx: true,
     uni: true,
     ROUTES: true,
     npmPackageInfo: true,

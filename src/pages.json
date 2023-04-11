@@ -1,13 +1,13 @@
 {
   "pages": [
-    // {
-    //   "name": "Login",
-    //   "path": "pages/user/login/index",
-    //   "style": {
-    //     "navigationBarTitleText": "登录",
-    //     "navigationStyle": "custom"
-    //   }
-    // },
+    {
+      "name": "Login",
+      "path": "pages/user/login/index",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationStyle": "custom"
+      }
+    },
     {
       "name": "Channel",
       "path": "pages/tabbars/channel/index",
@@ -22,6 +22,27 @@
       "style": {
         "navigationBarTitleText": "我的",
         "navigationStyle": "custom"
+      }
+    },
+    {
+      "name": "UserInfo",
+      "path": "pages/user/user-info/index",
+      "style": {
+        "navigationBarTitleText": "我的信息"
+      }
+    },
+    {
+      "name": "ChangePassword",
+      "path": "pages/user/change-password/index",
+      "style": {
+        "navigationBarTitleText": "修改密码"
+      }
+    },
+    {
+      "name": "Form",
+      "path": "pages/form/index",
+      "style": {
+        "navigationBarTitleText": "表单"
       }
     },
     // {
@@ -79,8 +100,8 @@
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#1AA86C",
+    "navigationBarTitleText": "府院",
+    "navigationBarBackgroundColor": "#fff",
     "usingComponents": {
       "custom-pull-down": "/wxcomponents/customPullDown/index",
       "custom-nav-bar": "/wxcomponents/customNavBar/index",

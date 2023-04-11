@@ -23,7 +23,7 @@ const sizeMapping: Record<string, string> = {
 }
 
 function getSizeRules(Mapping: Record<string, string>): Rule<{}>[] {
-  return Object.keys(Mapping).map((key) => {
+  return Object.keys(Mapping).map(key => {
     const value = Mapping[key]
     return [new RegExp(`^${key}(\\d+)$`), ([, d]) => ({ [value]: `${d}rpx` })]
   })
@@ -43,11 +43,14 @@ export const createConfig = () => {
       presetWeapp() as Preset,
       presetAttributify(),
       presetIcons({
-        prefix: '',
+        prefix: 'icon-',
         extraProperties: {
           display: 'inline-block',
           cursor: 'pointer',
-          'font-size': '20px'
+          'font-size': '32rpx'
+        },
+        collections: {
+          ep: () => import('@iconify-json/ep/icons.json').then(i => i.default)
         }
       }),
       presetRemToRpx({

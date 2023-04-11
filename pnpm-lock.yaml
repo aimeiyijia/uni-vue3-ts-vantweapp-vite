@@ -10,9 +10,11 @@ specifiers:
   '@dcloudio/uni-h5': 3.0.0-alpha-3071220230331002
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3071220230331002
   '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3071220230331002
+  '@iconify-json/ep': ^1.1.10
   '@types/node': ^18.15.11
   '@typescript-eslint/eslint-plugin': 4.15.1
   '@typescript-eslint/parser': 4.15.1
+  '@unocss/preset-icons': ^0.51.2
   '@vue/eslint-config-typescript': 7.0.0
   auto-import-types: 0.0.4
   autoprefixer: 10.4.4
@@ -63,6 +65,7 @@ dependencies:
   '@dcloudio/uni-components': 3.0.0-alpha-3071220230331002
   '@dcloudio/uni-h5': 3.0.0-alpha-3071220230331002_postcss@8.4.21+vue@3.2.47
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3071220230331002_postcss@8.4.21+vue@3.2.47
+  '@iconify-json/ep': 1.1.10
   await-to-js: 3.0.0
   crypto-js: 4.1.1
   lodash.clonedeep: 4.5.0
@@ -82,6 +85,7 @@ devDependencies:
   '@types/node': 18.15.11
   '@typescript-eslint/eslint-plugin': 4.15.1_mhspmlwyocmml32a3etislnlpu
   '@typescript-eslint/parser': 4.15.1_hrkuebk64jiu2ut2d2sm4oylnu
+  '@unocss/preset-icons': 0.51.2
   '@vue/eslint-config-typescript': 7.0.0_4k5hjbmmwhkeiwrix6m2d5kzea
   auto-import-types: 0.0.4
   autoprefixer: 10.4.4_postcss@8.4.21
@@ -2101,9 +2105,14 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
+  /@iconify-json/ep/1.1.10:
+    resolution: {integrity: sha512-1N3H28hbulsw3UNZjAZ1c7BhK9mLiw8VrngQc58xNQ7dnzaUgtKN81aqkrZ9ffDXcfJGL3Rk9Yc3/QrSSI24sg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
 
   /@iconify/utils/2.1.5:
     resolution: {integrity: sha512-6MvDI+I6QMvXn5rK9KQGdpEE4mmLTcuQdLZEiX5N+uZB+vc4Yw9K1OtnOgkl8mp4d9X0UrILREyZgF1NUwUt+Q==}
@@ -2862,6 +2871,10 @@ packages:
     resolution: {integrity: sha512-WMIp8xr7YSlID2whqfRGLwagp59e6u4ckPACEpoDOW8sTeSPRZm54hxPhuWXD1SQuqcwHPMtM9nzGD8UOnqQxA==}
     dev: true
 
+  /@unocss/core/0.51.2:
+    resolution: {integrity: sha512-P/XYiahNbBD3KyuOW78MLo0brcSLZ6xaLPNPzeSDXloJlIZHeP/JnMpoZz/Evk2mC7xFqE+pjraPZTnIDHdjpw==}
+    dev: true
+
   /@unocss/inspector/0.50.6:
     resolution: {integrity: sha512-6nX1YtaL67ohn/PfSSBv3npJ8qZcdc7S9X2zE6PUD/xhwtz7Bohx9I/KtmFdjJz5WeeGR7di0uYC6xsAcFLndQ==}
     dependencies:
@@ -2894,6 +2907,16 @@ packages:
     dependencies:
       '@iconify/utils': 2.1.5
       '@unocss/core': 0.50.6
+      ofetch: 1.0.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@unocss/preset-icons/0.51.2:
+    resolution: {integrity: sha512-iMm3oP//D13AV9T/sU8KncQkVjd0waVqEelknmmuwLxdM17lDjrY4Xc86MG33b7XWfzCmzkUEy0pwyaibaZ6rg==}
+    dependencies:
+      '@iconify/utils': 2.1.5
+      '@unocss/core': 0.51.2
       ofetch: 1.0.1
     transitivePeerDependencies:
       - supports-color
@@ -6052,7 +6075,7 @@ packages:
     dependencies:
       destr: 1.2.2
       node-fetch-native: 1.0.2
-      ufo: 1.1.0
+      ufo: 1.1.1
     dev: true
 
   /omggif/1.0.10:
@@ -7534,10 +7557,6 @@ packages:
     hasBin: true
     dev: true
     optional: true
-
-  /ufo/1.1.0:
-    resolution: {integrity: sha512-LQc2s/ZDMaCN3QLpa+uzHUOQ7SdV0qgv3VBXOolQGXTaaZpIur6PwUclF5nN2hNkiTRcUugXd1zFOW3FLJ135Q==}
-    dev: true
 
   /ufo/1.1.1:
     resolution: {integrity: sha512-MvlCc4GHrmZdAllBc0iUDowff36Q9Ndw/UzqmEKyrfSzokTd9ZCy1i+IIk5hrYKkjoYVQyNbrw7/F8XJ2rEwTg==}

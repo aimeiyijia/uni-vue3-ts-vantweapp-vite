@@ -11,8 +11,11 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ImgTip: typeof import('./../src/components/ImgTip/index.vue')['default']
     NavList: typeof import('./../src/components/NavList/index.vue')['default']
-    PVanField: typeof import('./../src/components/p-vant/p-van-field/index.vue')['default']
+    PVantCell: typeof import('./../src/components/PVant/PVantCell/index.vue')['default']
+    PVantField: typeof import('./../src/components/PVant/PVantField/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VantFieldPicker: typeof import('./../src/components/VantForm/components/VantFieldPicker/index.vue')['default']
+    VantForm: typeof import('./../src/components/VantForm/index.vue')['default']
   }
 }

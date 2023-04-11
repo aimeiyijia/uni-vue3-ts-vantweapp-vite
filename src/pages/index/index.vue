@@ -7,14 +7,14 @@
       @change="handleChange"
     >
       <template #button>
-        <van-button size="small" type="primary"> 发送验证码 </van-button>
+        <van-button size="small" type="primary">发送验证码</van-button>
       </template>
-      <template #label> hahha </template>
+      <template #label>hahha</template>
     </p-vant-field>
     <van-field use-button-slot :value="true">
-      <template #label> hahha </template>
+      <template #label>hahha</template>
       <template #button>
-        <van-button size="small" type="primary"> 发送验证码 </van-button>
+        <van-button size="small" type="primary">发送验证码</van-button>
       </template>
       测试
     </van-field>
@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { httpGetProvince } from '@/api/user'
-import PVantField from '@/components/p-vant/p-van-field/index.vue'
+import PVantField from '@/components/PVant/PVantField/index.vue'
 import { useRoute, useRouter } from '@/plugins/uni-router'
 
 // const curRouter = useRouter()

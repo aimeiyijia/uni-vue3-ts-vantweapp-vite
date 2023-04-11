@@ -102,7 +102,7 @@
 </template>
 
 <script setup lang="ts">
-import PVantField from '@/components/p-vant/p-van-field/index.vue'
+import PVantField from '@/components/PVant/PVantField/index.vue'
 const systemName = ref('破产平台')
 const isShowFace = ref(true)
 const loginType = ref('acc')
