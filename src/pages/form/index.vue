@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import VantForm from '@/components/VantForm/index.vue'
-// 这么写就支持双向绑定，否则不支持
+// 这么写就支持双向绑定，因为内部要重写forms.data，直接reactive没法重写
 const forms = reactive({
   data: {
     input: '初始值哈哈',
