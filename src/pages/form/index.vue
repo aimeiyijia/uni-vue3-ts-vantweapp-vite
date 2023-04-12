@@ -9,24 +9,33 @@
 import VantForm from '@/components/VantForm/index.vue'
 // 这么写就支持双向绑定，否则不支持
 const forms = reactive({
-  data: {}
+  data: {
+    input: '初始值哈哈',
+    picker: [
+      { name: '宁波', key: 'ningbo' },
+      { name: '宁波', key: 'ningbo' }
+    ]
+  }
 })
 const options = [
-  // {
-  //   type: 'Field',
-  //   field: 'input',
-  //   placeholder: '请输入用户名',
-  //   label: '输入型：',
-  //   onChange() {
-  //     console.log('变化123')
-  //   }
-  // }
+  {
+    type: 'Field',
+    field: 'input',
+    placeholder: '请输入用户名',
+    label: '输入型：',
+    onChange() {
+      console.log('变化123')
+    }
+  },
   {
     type: 'Picker',
     field: 'picker',
     placeholder: '请输入用户名',
     label: '输入型：',
+    // 选项对象中，文字对应的 key
     valueKey: 'name',
+    // 值之间分割符
+    separator: '--',
     columns: [
       {
         values: [
@@ -50,8 +59,16 @@ const options = [
     // }
   }
 ]
+
+// setTimeout(() => {
+//   forms.data.picker = [
+//     { name: '宁波3', key: 'ningbo' },
+//     { name: '宁波4', key: 'ningbo' }
+//   ]
+// }, 2000)
+
 function handleTest() {
-  console.log(forms, '拼好的表单值')
+  console.log(forms.data, '拼好的表单值')
 }
 function handleUpdate(val) {
   console.log('更新')

@@ -22,17 +22,33 @@
 
 <script setup lang="ts">
 import PVantField from '@/components/PVant/PVantField/index.vue'
+const attrs = useAttrs()
 const props = defineProps(['modelValue'])
 const emits = defineEmits(['update:modelValue', 'change'])
 // const pickerRef = ref('')
+onMounted(() => {
+  console.log(useAttrs(), '属性')
+})
 const popupShow = ref(false)
 const fieldValue = ref([])
+watch(
+  () => props.modelValue,
+  value => {
+    console.log(value, 'fieldValue发生了变化')
+    fieldValue.value = value
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+)
 const showValue = computed(() => {
+  const { separator = '/', valueKey = 'name' } = attrs
   return fieldValue.value
     .map((o: any) => {
-      return o.name
+      return o[valueKey]
     })
-    .join('/')
+    .join(separator)
 })
 function handlePopupClose() {
   popupShow.value = false

@@ -1,10 +1,14 @@
 <template>
   <view class="vant-form-container">
     <view v-for="item in options" :key="item.field" class="vant-form__item">
-      <p-vant-field v-if="item.type === 'Field'" v-bind="item"></p-vant-field>
+      <p-vant-field
+        v-if="item.type === 'Field'"
+        v-model="formData.data[item.field]"
+        v-bind="item"
+      ></p-vant-field>
       <vant-field-picker
         v-if="item.type === 'Picker'"
-        v-model="formData[item.field]"
+        v-model="formData.data[item.field]"
         v-bind="item"
         @change="handleChange"
       ></vant-field-picker>
@@ -28,17 +32,17 @@ const props = defineProps({
 })
 const emits = defineEmits(['update:modelValue'])
 const formData = reactive({
-  picker: [1, 2]
+  data: props.modelValue
 })
 
 watch(
-  () => formData,
+  () => formData.data,
   value => {
     console.log(value, 'formData发生了变化')
     emits('update:modelValue', value)
   },
   {
-    immediate: true, // 默认：false
+    // immediate: true, // 默认：false
     deep: true // 默认：false
   }
 )
