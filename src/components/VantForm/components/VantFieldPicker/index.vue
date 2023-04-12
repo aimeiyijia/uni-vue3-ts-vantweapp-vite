@@ -1,47 +1,61 @@
 <template>
   <div>
     <p-vant-field
-      v-model="fieldValue"
+      v-model="showValue"
       :is-link="true"
       :disabled="true"
       v-bind="$attrs"
       @click-input="handleOpenPicker"
     ></p-vant-field>
-    <van-popup
-      :show="popupShow"
-      round
-      position="bottom"
-      custom-style="height: 50%"
-      @close="handlePopupClose"
-    >
-      <van-picker show-toolbar :columns="columns" title="请选择" @change="handlePickerChange" />
+    <van-popup :show="popupShow" v-bind="$attrs" round position="bottom" custom-style="height: 50%">
+      <van-picker
+        show-toolbar
+        v-bind="$attrs"
+        title="请选择"
+        @confirm="handlePickerConfirm"
+        @cancel="handlePickerCancel"
+        @change="handlePickerChange"
+      />
     </van-popup>
   </div>
 </template>
 
 <script setup lang="ts">
 import PVantField from '@/components/PVant/PVantField/index.vue'
-const popupShow = ref(true)
-const fieldValue = ref('')
-const columns = [
-  '杭州',
-  '宁波',
-  '温州',
-  '嘉兴',
-  '湖州',
-  '湖州',
-  '湖州',
-  '湖州',
-  '湖州',
-  '湖州',
-  '湖州'
-]
-function handlePopupClose() {}
+const props = defineProps(['modelValue'])
+const emits = defineEmits(['update:modelValue', 'change'])
+// const pickerRef = ref('')
+const popupShow = ref(false)
+const fieldValue = ref([])
+const showValue = computed(() => {
+  return fieldValue.value
+    .map((o: any) => {
+      return o.name
+    })
+    .join('/')
+})
+function handlePopupClose() {
+  popupShow.value = false
+}
 function handleOpenPicker() {
   console.log('field点击')
   popupShow.value = true
 }
-function handlePickerChange() {}
+function handlePickerConfirm(e) {
+  const { index, value } = e.detail
+  fieldValue.value = value
+  popupShow.value = false
+  emits('update:modelValue', value)
+  console.log(value, '选中的值')
+}
+function handlePickerCancel(e) {
+  popupShow.value = false
+}
+function handlePickerChange(e) {
+  // const { value } = e.detail
+  // emits('update:modelValue', value)
+  emits('change', e)
+}
 </script>
 
 <style scoped></style>

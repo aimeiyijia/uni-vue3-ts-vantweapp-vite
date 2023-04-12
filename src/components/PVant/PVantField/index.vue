@@ -56,7 +56,6 @@ const attrs = computed(() => {
   return newAttrs
 })
 function handleInputClick(e) {
-  console.log('时间', e)
   emit('click-input', e)
 }
 function handleInput(e: WechatMiniprogram.TouchEvent) {

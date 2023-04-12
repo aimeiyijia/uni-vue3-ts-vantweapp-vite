@@ -2,7 +2,12 @@
   <view class="vant-form-container">
     <view v-for="item in options" :key="item.field" class="vant-form__item">
       <p-vant-field v-if="item.type === 'Field'" v-bind="item"></p-vant-field>
-      <vant-field-picker v-if="item.type === 'Picker'" v-bind="item"></vant-field-picker>
+      <vant-field-picker
+        v-if="item.type === 'Picker'"
+        v-model="formData[item.field]"
+        v-bind="item"
+        @change="handleChange"
+      ></vant-field-picker>
     </view>
   </view>
 </template>
@@ -11,8 +16,36 @@
 import PVantField from '@/components/PVant/PVantField/index.vue'
 
 import VantFieldPicker from './components/VantFieldPicker/index.vue'
-const props = defineProps(['options'])
-console.log(props.options, '123')
+const props = defineProps({
+  modelValue: {
+    type: Object,
+    default: () => ({})
+  },
+  options: {
+    type: Object,
+    default: () => ({})
+  }
+})
+const emits = defineEmits(['update:modelValue'])
+const formData = reactive({
+  picker: [1, 2]
+})
+
+watch(
+  () => formData,
+  value => {
+    console.log(value, 'formData发生了变化')
+    emits('update:modelValue', value)
+  },
+  {
+    immediate: true, // 默认：false
+    deep: true // 默认：false
+  }
+)
+console.log(props, '表单配置项')
+function handleChange(e) {
+  console.log(e, '选中的值变化')
+}
 </script>
 
 <style scoped></style>
