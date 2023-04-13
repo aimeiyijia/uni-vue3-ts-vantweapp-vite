@@ -1,33 +1,15 @@
 <template>
-  <van-field
+  <van-checkbox
     :class="[hiddenLabel ? `hidden-label` : '']"
     :value="modelValue"
     v-bind="attrs"
     @change="handleChange"
-    @click-input="handleInputClick"
-    @input="handleInput"
   >
-    <template v-if="$slots.button" #button>
-      <slot name="button"></slot>
+    <slot></slot>
+    <template v-if="$slots.icon" #icon>
+      <slot name="icon"></slot>
     </template>
-    <template v-if="$slots.input" #input>
-      <slot name="input"></slot>
-    </template>
-    <template v-if="$slots.label" #label>
-      <slot name="label"></slot>
-    </template>
-    <!-- 插槽里的view 就算不写，uniapp也会帮你生成一个，所以为了方便调样式，还是写一个 -->
-    <template v-if="$slots['left-icon']" #left-icon>
-      <view class="slot__left-icon">
-        <slot name="left-icon"></slot>
-      </view>
-    </template>
-    <template v-if="$slots['right-icon']" #right-icon>
-      <view class="slot__right-icon">
-        <slot name="right-icon"></slot>
-      </view>
-    </template>
-  </van-field>
+  </van-checkbox>
 </template>
 
 <script setup lang="ts">
@@ -36,8 +18,8 @@ import { useAttrs } from 'vue'
 import { getCamelCase } from '@/utils/transform'
 const props = defineProps({
   modelValue: {
-    type: String,
-    default: ''
+    type: Boolean,
+    default: false
   },
   hiddenLabel: {
     type: Boolean,
@@ -52,19 +34,15 @@ const attrs = computed(() => {
   for (const key in originAttrs) {
     newAttrs[getCamelCase(key)] = originAttrs[key]
   }
-  console.log(newAttrs, '新数据')
+  console.log(props, 'checkbox旧数据')
+  console.log(newAttrs, 'checkbox新数据')
   return newAttrs
 })
-function handleInputClick(e) {
-  emit('click-input', e)
-}
-function handleInput(e: WechatMiniprogram.TouchEvent) {
+function handleChange(e) {
+  console.log('PVantField变化---', e)
   const value = e.detail
   emit('update:modelValue', value)
-}
-function handleChange(e) {
-  console.log('PVantField变化---')
-  emit('change')
+  emit('change', e)
 }
 </script>
 <script lang="ts">

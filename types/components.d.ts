@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     ImgTip: typeof import('./../src/components/ImgTip/index.vue')['default']
     NavList: typeof import('./../src/components/NavList/index.vue')['default']
     PVantCell: typeof import('./../src/components/PVant/PVantCell/index.vue')['default']
+    PVantCheckbox: typeof import('./../src/components/PVant/PVantCheckbox/index.vue')['default']
     PVantField: typeof import('./../src/components/PVant/PVantField/index.vue')['default']
     PVantRadio: typeof import('./../src/components/PVant/PVantRadio/index.vue')['default']
     PVantRate: typeof import('./../src/components/PVant/PVantRate/index.vue')['default']

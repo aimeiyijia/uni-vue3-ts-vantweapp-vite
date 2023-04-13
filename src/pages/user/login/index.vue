@@ -33,21 +33,23 @@
         <!-- 刷脸登录 -->
         <view v-if="isShowFace && loginType === 'face'" class="login__form--field-container">
           <view class="login__form--field">
-            <p-van-field
+            <p-vant-field
               v-model="faceLoginForm.username"
               :hidden-label="true"
               placeholder="请输入姓名"
+              clearable
               size="large"
-              left-icon="@/assets/images/ic_register_name.png"
+              left-icon="user-o"
             />
           </view>
           <view class="login__form--field">
-            <p-van-field
+            <p-vant-field
               v-model="faceLoginForm.idcard"
               :hidden-label="true"
               placeholder="请输入证件号码"
+              clearable
               size="large"
-              left-icon="@/assets/images/ic_register_zjhm.png"
+              left-icon="idcard"
             />
           </view>
         </view>
@@ -55,23 +57,28 @@
         <!-- 账号密码 -->
         <view v-if="!isShowFace || loginType === 'acc'" class="login__form--field-container">
           <view class="login__form--field">
-            <p-van-field
-              v-model="accLoginForm.accname"
+            <p-vant-field
+              v-model="accLoginForm.userName"
               :hidden-label="true"
               :placeholder="namePlaceholder"
+              clearable
               size="large"
-              left-icon="~@/assets/images/ic_register_name.png"
+              left-icon="user-o"
             />
           </view>
           <view class="login__form--field">
-            <p-van-field
+            <p-vant-field
               v-model="accLoginForm.password"
               :hidden-label="true"
               placeholder="请输入密码"
-              left-icon="@/assets/images/ic_register_password.png"
+              clearable
               size="large"
               password="true"
-            />
+            >
+              <template #left-icon>
+                <i class="m4 icon-ep-lock"></i>
+              </template>
+            </p-vant-field>
           </view>
           <view class="find-password">
             <text bindtap="passwordAction">找回密码</text>
@@ -83,12 +90,15 @@
             type="info"
             block
             color="#589af5"
-            custom-style="border-radius: 8rpx;box-shadow: 0 0 6px 0 #589af5;margin-bottom: 36rpx"
+            custom-style="border-radius: 8rpx;box-shadow: 0 0 6px 0 #589af5;"
             size="large"
             @click="handleLogin"
           >
             登录
           </van-button>
+          <p-vant-checkbox v-model="isRemember" checked-color="#589af5" class="remember-checkbox">
+            <text class="remember-checkbox__desc">记住账号</text>
+          </p-vant-checkbox>
           <text class="register-user" @click="registerAction">注册新用户</text>
         </view>
       </view>
@@ -102,37 +112,57 @@
 </template>
 
 <script setup lang="ts">
+import omit from 'lodash.omit'
+
+import { httpPostCooperativeLogin } from '@/api/user'
+import PVantCheckbox from '@/components/PVant/PVantCheckbox/index.vue'
 import PVantField from '@/components/PVant/PVantField/index.vue'
-const systemName = ref('破产平台')
-const isShowFace = ref(true)
+import { useRequest } from '@/http/hooks'
+import { useRouter } from '@/plugins/uni-router'
+import useUserStore from '@/store/user'
+
+const Router = useRouter()
+const userInfo = useUserStore()
+const systemName = '府院平台'
+const isShowFace = ref(false)
 const loginType = ref('acc')
+const isRemember = ref(false)
 const namePlaceholder = ref('请输入账号/手机号码/证件号码')
 const faceLoginForm = reactive({
   username: '',
   idcard: ''
 })
+console.log(userInfo.rememberLoginInfo, '记录的账号')
 const accLoginForm = reactive({
-  accname: '',
-  password: ''
+  ...userInfo.rememberLoginInfo,
+  userName: '3201002',
+  password: 'Pcgl1234'
 })
-function onFieldChange(e) {
-  const value = e.detail
-  const { dataset } = e.currentTarget
-  const { type } = dataset
-  if (loginType.value === 'acc') {
-    Object.assign(accLoginForm, {
-      [type]: value
-    })
-  }
-  console.log(e, '表单变化')
-}
 function handleLoginTypeClick(e) {
   console.log(e, '登录类型变化')
   const { type } = e.currentTarget.dataset
   loginType.value = type
 }
-function handleLogin() {
-  console.log(accLoginForm, '账号登录表单')
+function verifyLoginForm() {}
+function getParams() {
+  return accLoginForm
+}
+async function handleLogin() {
+  const params = getParams()
+  const { data } = await useRequest(httpPostCooperativeLogin(params))
+  if (data) {
+    console.log(data, '登录成功')
+    userInfo.setUserInfo(data)
+    if (isRemember) {
+      const rememberLoginInfo = omit(accLoginForm, ['password'])
+      userInfo.setRememberLoginInfo(rememberLoginInfo)
+    } else {
+      userInfo.clearRemeberLoginInfo()
+    }
+    // Router.pushTab({
+    //   name: 'Channel'
+    // })
+  }
 }
 function registerAction() {}
 </script>
@@ -290,6 +320,14 @@ function registerAction() {}
   .register-user {
     font-size: 34rpx;
     color: #4892f5;
+  }
+  .remember-checkbox {
+    :deep(.van-checkbox) {
+      margin: 18rpx 0;
+    }
+    .remember-checkbox__desc {
+      color: #589af5;
+    }
   }
 }
 </style>

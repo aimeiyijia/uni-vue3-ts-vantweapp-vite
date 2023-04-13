@@ -33,6 +33,7 @@ specifiers:
   eslint-plugin-vue: 7.0.0
   husky: 7.0.4
   lodash.clonedeep: ^4.5.0
+  lodash.omit: ^4.5.0
   luch-request: ^3.0.8
   miniprogram-api-typings: ^3.9.0
   path-to-regexp: ^6.2.1
@@ -71,6 +72,7 @@ dependencies:
   crypto-js: 4.1.1
   dayjs: 1.11.7
   lodash.clonedeep: 4.5.0
+  lodash.omit: 4.5.0
   luch-request: 3.0.8
   path-to-regexp: 6.2.1
   pinia: 2.0.13_x4luqfszmmii4mr5yjqdgqy65u
@@ -5721,6 +5723,10 @@ packages:
     resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
     dev: true
     optional: true
+
+  /lodash.omit/4.5.0:
+    resolution: {integrity: sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==}
+    dev: false
 
   /lodash.truncate/4.4.2:
     resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}

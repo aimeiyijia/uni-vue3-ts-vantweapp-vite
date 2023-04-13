@@ -3,7 +3,7 @@
 // 不要求token的接口
 export const whiteLists = [
   '/appUser/appVersion',
-  '/user/userLogin',
+  '/cooperative/user/login', //登录接口
   '/broke/sms/smsCode',
   '/common/getHomePageConfig'
 ]

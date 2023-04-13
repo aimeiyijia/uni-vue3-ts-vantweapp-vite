@@ -9,8 +9,6 @@ import { nativeLists, whiteLists } from '../../white'
 const userStore = useUserStore()
 // 请求拦截器
 export function requestInterceptors(config: HttpRequestConfig) {
-  console.log(config, '请求配置')
-  console.log(goEncrypt, '加密')
   const { url } = config
   const { token, platform } = userStore
 
@@ -42,7 +40,8 @@ export function requestError(error: HttpRequestConfig): Promise<HttpRequestConfi
 }
 // 响应拦截器
 export function responseInterceptors(response: HttpResponse) {
-  return response
+  const { data } = response
+  return data
 }
 // 响应拦截器 错误处理
 export function responseError(error: HttpError): Promise<HttpError> {

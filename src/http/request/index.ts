@@ -5,7 +5,7 @@ const FORMType = 'application/x-www-form-urlencoded;charset=UTF-8'
 
 // const request = instance.request 别使用这种方式简写，会报错
 
-export function $post(url, data, contentType) {
+export function $post(url: string, data: any, contentType?: string) {
   const ct = contentType || JSONType
   return instance.request({
     method: 'POST',

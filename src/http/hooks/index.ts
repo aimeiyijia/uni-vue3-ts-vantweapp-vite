@@ -27,8 +27,9 @@ export async function useRequest(fn: Promise<any>) {
   if (code === 200) {
     console.log('请求成功且获取到了数据')
   } else {
-    uni.showToast({
-      title: msg
+    wx.showModal({
+      title: '提示',
+      content: msg
     })
   }
   return {
