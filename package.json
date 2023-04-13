@@ -23,6 +23,7 @@
     "@iconify-json/ep": "^1.1.10",
     "await-to-js": "^3.0.0",
     "crypto-js": "^4.1.1",
+    "dayjs": "^1.11.7",
     "lodash.clonedeep": "^4.5.0",
     "luch-request": "^3.0.8",
     "path-to-regexp": "^6.2.1",

@@ -24,6 +24,7 @@ specifiers:
   commitlint: 16.2.3
   crypto-js: ^4.1.1
   cz-customizable: 6.3.0
+  dayjs: ^1.11.7
   eslint: 7.32.0
   eslint-config-prettier: 8.3.0
   eslint-plugin-import: 2.26.0
@@ -68,6 +69,7 @@ dependencies:
   '@iconify-json/ep': 1.1.10
   await-to-js: 3.0.0
   crypto-js: 4.1.1
+  dayjs: 1.11.7
   lodash.clonedeep: 4.5.0
   luch-request: 3.0.8
   path-to-regexp: 6.2.1
@@ -4031,7 +4033,6 @@ packages:
 
   /dayjs/1.11.7:
     resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
-    dev: true
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

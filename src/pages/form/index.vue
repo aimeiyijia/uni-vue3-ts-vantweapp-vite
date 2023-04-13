@@ -14,49 +14,57 @@ const forms = reactive({
     picker: [
       { name: '宁波', key: 'ningbo' },
       { name: '宁波', key: 'ningbo' }
-    ]
+    ],
+    calendar: ['2021-1-1', '2022-1-1']
   }
 })
 const options = [
+  // {
+  //   // 防止与内部type冲突
+  //   vantType: 'Field',
+  //   field: 'input',
+  //   placeholder: '请输入用户名',
+  //   label: '输入型：',
+  //   onChange() {
+  //     console.log('变化123')
+  //   }
+  // },
+  // {
+  //   vantType: 'Picker',
+  //   field: 'picker',
+  //   placeholder: '请输入用户名',
+  //   label: '输入型：',
+  //   // 选项对象中，文字对应的 key
+  //   valueKey: 'name',
+  //   // 值之间分割符
+  //   separator: '--',
+  //   columns: [
+  //     {
+  //       values: [
+  //         { name: '宁波', key: 'ningbo' },
+  //         { name: '杭州', key: 'hangzhou' },
+  //         { name: '温州', key: 'wenzhou' }
+  //       ],
+  //       defaultIndex: 2
+  //     },
+  //     {
+  //       values: [
+  //         { name: '宁波1', key: 'ningbo1' },
+  //         { name: '杭州1', key: 'hangzhou1' },
+  //         { name: '温州1', key: 'wenzhou1' }
+  //       ],
+  //       defaultIndex: 2
+  //     }
+  //   ]
+  //   // onChange(e) {
+  //   //   console.log(e, '最外部变化123')
+  //   // }
+  // },
   {
-    type: 'Field',
-    field: 'input',
-    placeholder: '请输入用户名',
-    label: '输入型：',
-    onChange() {
-      console.log('变化123')
-    }
-  },
-  {
-    type: 'Picker',
-    field: 'picker',
-    placeholder: '请输入用户名',
-    label: '输入型：',
-    // 选项对象中，文字对应的 key
-    valueKey: 'name',
-    // 值之间分割符
-    separator: '--',
-    columns: [
-      {
-        values: [
-          { name: '宁波', key: 'ningbo' },
-          { name: '杭州', key: 'hangzhou' },
-          { name: '温州', key: 'wenzhou' }
-        ],
-        defaultIndex: 2
-      },
-      {
-        values: [
-          { name: '宁波1', key: 'ningbo1' },
-          { name: '杭州1', key: 'hangzhou1' },
-          { name: '温州1', key: 'wenzhou1' }
-        ],
-        defaultIndex: 2
-      }
-    ]
-    // onChange(e) {
-    //   console.log(e, '最外部变化123')
-    // }
+    vantType: 'Calendar',
+    type: 'range',
+    field: 'calendar',
+    label: '日期：'
   }
 ]
 

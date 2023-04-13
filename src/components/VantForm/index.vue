@@ -2,16 +2,22 @@
   <view class="vant-form-container">
     <view v-for="item in options" :key="item.field" class="vant-form__item">
       <p-vant-field
-        v-if="item.type === 'Field'"
+        v-if="item.vantType === 'Field'"
         v-model="formData.data[item.field]"
         v-bind="item"
       ></p-vant-field>
       <vant-field-picker
-        v-if="item.type === 'Picker'"
+        v-if="item.vantType === 'Picker'"
         v-model="formData.data[item.field]"
         v-bind="item"
         @change="handleChange"
       ></vant-field-picker>
+      <vant-field-calendar
+        v-if="item.vantType === 'Calendar'"
+        v-model="formData.data[item.field]"
+        v-bind="item"
+        @change="handleChange"
+      ></vant-field-calendar>
     </view>
   </view>
 </template>
@@ -19,6 +25,7 @@
 <script setup lang="ts">
 import PVantField from '@/components/PVant/PVantField/index.vue'
 
+import PVantFieldCalendar from './components/VantFieldCalendar/index.vue'
 import VantFieldPicker from './components/VantFieldPicker/index.vue'
 const props = defineProps({
   modelValue: {
@@ -42,7 +49,6 @@ watch(
     emits('update:modelValue', value)
   },
   {
-    // immediate: true, // 默认：false
     deep: true // 默认：false
   }
 )
