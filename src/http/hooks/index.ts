@@ -29,6 +29,7 @@ export async function useRequest(fn: Promise<any>) {
   } else {
     wx.showModal({
       title: '提示',
+      showCancel: false,
       content: msg
     })
   }

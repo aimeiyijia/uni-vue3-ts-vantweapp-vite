@@ -1,3 +1,18 @@
+import cloneDeep from 'lodash.clonedeep'
+import isObject from 'lodash.isobject'
+
+function clearObj(obj, skip: Object | string[]) {
+  const skipIsArray = Array.isArray(skip)
+  const skipIsObject = isObject(skip)
+  Object.keys(obj).forEach(key => {
+    if (skipIsArray && !skip.includes(key)) {
+      delete obj[key]
+    }
+    if (skipIsObject && !Object.hasOwn(skip, key)) {
+      delete obj[key]
+    }
+  })
+}
 export interface UserInfo {
   contactCardNo: string
   contactName: string
@@ -20,15 +35,13 @@ export interface UserInfo {
 export interface RememberLoginInfo {
   roleCode: string
   isNeedVerify: string
+  isRemember: boolean
+  userName: string
 }
 export interface UserInfoStore {
   userInfo: UserInfo
   platform: string
   rememberLoginInfo: RememberLoginInfo
-}
-const defaultRememberLoginInfo = {
-  roleCode: 'cooperative',
-  isNeedVerify: '1'
 }
 // userRoleCode: 'cooperative'
 export default defineStore({
@@ -42,7 +55,7 @@ export default defineStore({
       userInfo: {
         userRoleCode: 'cooperative'
       } as UserInfo,
-      rememberLoginInfo: defaultRememberLoginInfo,
+      rememberLoginInfo: {} as RememberLoginInfo,
       // 登录的端，gir管理人端、zqr债权人端、cooperative府院
       platform: 'cooperative'
     }
@@ -60,9 +73,9 @@ export default defineStore({
       Object.assign(this.rememberLoginInfo, rememberLoginInfo)
     },
     clearRemeberLoginInfo() {
-      Object.assign(this.rememberLoginInfo, defaultRememberLoginInfo)
+      clearObj(this.rememberLoginInfo, {})
     },
-    setPlatform(platform) {
+    setPlatform(platform: string) {
       this.platform = platform
     }
   }

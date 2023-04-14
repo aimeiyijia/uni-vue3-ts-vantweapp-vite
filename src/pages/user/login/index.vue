@@ -76,7 +76,7 @@
               password="true"
             >
               <template #left-icon>
-                <i class="m4 icon-ep-lock"></i>
+                <i class="m8 icon-ep-lock"></i>
               </template>
             </p-vant-field>
           </view>
@@ -96,7 +96,11 @@
           >
             登录
           </van-button>
-          <p-vant-checkbox v-model="isRemember" checked-color="#589af5" class="remember-checkbox">
+          <p-vant-checkbox
+            v-model="accLoginForm.isRemember"
+            checked-color="#589af5"
+            class="remember-checkbox"
+          >
             <text class="remember-checkbox__desc">记住账号</text>
           </p-vant-checkbox>
           <text class="register-user" @click="registerAction">注册新用户</text>
@@ -113,6 +117,7 @@
 
 <script setup lang="ts">
 import omit from 'lodash.omit'
+import { noneParamsEaseFuncs } from 'XrFrame/xrFrameSystem'
 
 import { httpPostCooperativeLogin } from '@/api/user'
 import PVantCheckbox from '@/components/PVant/PVantCheckbox/index.vue'
@@ -126,7 +131,6 @@ const userInfo = useUserStore()
 const systemName = '府院平台'
 const isShowFace = ref(false)
 const loginType = ref('acc')
-const isRemember = ref(false)
 const namePlaceholder = ref('请输入账号/手机号码/证件号码')
 const faceLoginForm = reactive({
   username: '',
@@ -134,30 +138,58 @@ const faceLoginForm = reactive({
 })
 console.log(userInfo.rememberLoginInfo, '记录的账号')
 const accLoginForm = reactive({
-  ...userInfo.rememberLoginInfo,
+  roleCode: 'cooperative',
+  isNeedVerify: '1',
+  isRemember: false,
   userName: '3201002',
   password: 'Pcgl1234'
+})
+onMounted(() => {
+  const { rememberLoginInfo } = userInfo
+  const { isRemember } = rememberLoginInfo
+  if (isRemember) {
+    Object.assign(accLoginForm, rememberLoginInfo)
+  }
 })
 function handleLoginTypeClick(e) {
   console.log(e, '登录类型变化')
   const { type } = e.currentTarget.dataset
   loginType.value = type
 }
-function verifyLoginForm() {}
+function verifyLoginForm() {
+  const { userName, password } = accLoginForm
+  if (!userName) {
+    uni.showToast({
+      icon: 'none',
+      title: '请输入登录账号'
+    })
+    return
+  }
+  if (!password) {
+    uni.showToast({
+      icon: 'none',
+      title: '请输入密码'
+    })
+    return
+  }
+  return true
+}
 function getParams() {
   return accLoginForm
 }
 async function handleLogin() {
+  if (!verifyLoginForm()) return
   const params = getParams()
   const { data } = await useRequest(httpPostCooperativeLogin(params))
   if (data) {
-    console.log(data, '登录成功')
+    console.log(accLoginForm.isRemember, '登录成功')
     userInfo.setUserInfo(data)
-    if (isRemember) {
+    if (accLoginForm.isRemember) {
       const rememberLoginInfo = omit(accLoginForm, ['password'])
       userInfo.setRememberLoginInfo(rememberLoginInfo)
     } else {
       userInfo.clearRemeberLoginInfo()
+      console.log(userInfo.rememberLoginInfo, '不记住')
     }
     // Router.pushTab({
     //   name: 'Channel'
@@ -309,6 +341,10 @@ function registerAction() {}
 .login__form--field {
   flex: 1;
   margin-bottom: 64rpx;
+  :deep(.van-icon),
+  :deep(.slot__left-icon) {
+    color: var(--field-placeholder-text-color, #c8c9cc);
+  }
 }
 .find-password {
   text-align: right;

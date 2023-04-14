@@ -11,6 +11,7 @@ specifiers:
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3071220230331002
   '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3071220230331002
   '@iconify-json/ep': ^1.1.10
+  '@types/lodash': ^4.14.192
   '@types/node': ^18.15.11
   '@typescript-eslint/eslint-plugin': 4.15.1
   '@typescript-eslint/parser': 4.15.1
@@ -33,6 +34,7 @@ specifiers:
   eslint-plugin-vue: 7.0.0
   husky: 7.0.4
   lodash.clonedeep: ^4.5.0
+  lodash.isobject: ^3.0.2
   lodash.omit: ^4.5.0
   luch-request: ^3.0.8
   miniprogram-api-typings: ^3.9.0
@@ -72,6 +74,7 @@ dependencies:
   crypto-js: 4.1.1
   dayjs: 1.11.7
   lodash.clonedeep: 4.5.0
+  lodash.isobject: 3.0.2
   lodash.omit: 4.5.0
   luch-request: 3.0.8
   path-to-regexp: 6.2.1
@@ -86,6 +89,7 @@ devDependencies:
   '@dcloudio/uni-automator': 3.0.0-alpha-3071220230331002_postcss@8.4.21+vue@3.2.47
   '@dcloudio/uni-cli-shared': 3.0.0-alpha-3071220230331002_postcss@8.4.21+vue@3.2.47
   '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3071220230331002_kpnj3cfw52cvv33p4pg3c5gqye
+  '@types/lodash': 4.14.192
   '@types/node': 18.15.11
   '@typescript-eslint/eslint-plugin': 4.15.1_mhspmlwyocmml32a3etislnlpu
   '@typescript-eslint/parser': 4.15.1_hrkuebk64jiu2ut2d2sm4oylnu
@@ -2706,6 +2710,10 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+    dev: true
+
+  /@types/lodash/4.14.192:
+    resolution: {integrity: sha512-km+Vyn3BYm5ytMO13k9KTp27O75rbQ0NFw+U//g+PX7VZyjCioXaRFisqSIJRECljcTv73G3i6BpglNGHgUQ5A==}
     dev: true
 
   /@types/minimist/1.2.2:
@@ -5706,6 +5714,10 @@ packages:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
     dev: true
 
+  /lodash.isobject/3.0.2:
+    resolution: {integrity: sha512-3/Qptq2vr7WeJbB4KHUSKlq8Pl7ASXi3UG6CMbBm8WRtXi8+GHm7mKaU3urfpSEzWe2wCIChs6/sdocUsTKJiA==}
+    dev: false
+
   /lodash.isplainobject/4.0.6:
     resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
     dev: true
@@ -8027,6 +8039,22 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.47
+    dev: false
+
+  /vue-demi/0.14.0_vue@3.2.47:
+    resolution: {integrity: sha512-gt58r2ogsNQeVoQ3EhoUAvUsH9xviydl0dWJj7dabBC/2L4uBId7ujtCwDRD0JhkGsV1i0CtfLAeyYKBht9oWg==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.2.47
+    dev: true
 
   /vue-eslint-parser/7.11.0_eslint@7.32.0:
     resolution: {integrity: sha512-qh3VhDLeh773wjgNTl7ss0VejY9bMMa0GoDG2fQVyDzRFdiU3L7fw74tWZDHNQXdZqxO3EveQroa9ct39D2nqg==}
@@ -8050,7 +8078,7 @@ packages:
     resolution: {integrity: sha512-283vpYOhVHJCpMkjNVEwZdgaAb+Y93zFaXGAWTI378MLoNuwQydjD/BAy1e81QYEmyA+JbxqcmMZVWcM9rbriw==}
     dependencies:
       eslint-config-vue-global-api: 0.4.1
-      vue-demi: 0.13.11_vue@3.2.47
+      vue-demi: 0.14.0_vue@3.2.47
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
