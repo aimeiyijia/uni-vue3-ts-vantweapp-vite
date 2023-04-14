@@ -9,6 +9,13 @@
       }
     },
     {
+      "name": "RetrievePassword",
+      "path": "pages/user/retrieve-password/index",
+      "style": {
+        "navigationBarTitleText": "找回密码"
+      }
+    },
+    {
       "name": "Channel",
       "path": "pages/tabbars/channel/index",
       "style": {

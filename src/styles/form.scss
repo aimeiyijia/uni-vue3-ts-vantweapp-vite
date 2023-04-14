@@ -1,0 +1,13 @@
+// 写在这里是为了覆盖van默认样式
+.vant-form-container {
+  border-radius: 20rpx;
+  background: #fff;
+  .van-cell {
+    background-color: transparent;
+  }
+  .van-cell__value {
+    .van-cell {
+      padding: var(--cell-vertical-padding, 10px) 0;
+    }
+  }
+}

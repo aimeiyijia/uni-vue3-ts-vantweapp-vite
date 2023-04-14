@@ -81,7 +81,7 @@
             </p-vant-field>
           </view>
           <view class="find-password">
-            <text bindtap="passwordAction">找回密码</text>
+            <text @click="handleRetrievePassword">找回密码</text>
           </view>
         </view>
 
@@ -182,19 +182,23 @@ async function handleLogin() {
   const params = getParams()
   const { data } = await useRequest(httpPostCooperativeLogin(params))
   if (data) {
-    console.log(accLoginForm.isRemember, '登录成功')
+    console.log(data, '登录成功')
     userInfo.setUserInfo(data)
     if (accLoginForm.isRemember) {
       const rememberLoginInfo = omit(accLoginForm, ['password'])
       userInfo.setRememberLoginInfo(rememberLoginInfo)
     } else {
       userInfo.clearRemeberLoginInfo()
-      console.log(userInfo.rememberLoginInfo, '不记住')
     }
     // Router.pushTab({
     //   name: 'Channel'
     // })
   }
+}
+function handleRetrievePassword() {
+  Router.push({
+    name: 'RetrievePassword'
+  })
 }
 function registerAction() {}
 </script>

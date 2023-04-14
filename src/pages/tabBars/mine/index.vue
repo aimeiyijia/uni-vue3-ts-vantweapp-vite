@@ -117,7 +117,9 @@ export default {
   .loginout-btn {
     position: absolute;
     left: 0;
-    bottom: 32rpx;
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
+    bottom: 48rpx;
     padding: 0 40rpx;
     width: calc(100% - 80rpx);
   }
