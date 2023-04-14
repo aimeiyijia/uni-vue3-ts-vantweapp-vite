@@ -1,7 +1,7 @@
 <template>
   <view class="page-container retrieve-password-page">
     <view class="p-card-container">
-      <vant-form v-model="forms.data" :options="options">
+      <vant-form v-model="forms.data" :options="options" :rules="rules">
         <template #test>
           <van-button plain type="info" size="small">获取验证码</van-button>
         </template>
@@ -27,7 +27,8 @@ const options = [
   {
     // 防止与内部type冲突
     vantType: 'Field',
-    title: '姓名',
+    // 防止与内置的title冲突
+    vantTitle: '姓名',
     field: 'input',
     placeholder: '请输入用户名',
     titleWidth: '150rpx'
@@ -74,6 +75,10 @@ const options = [
     titleWidth: '150rpx'
   }
 ]
+const rules = reactive({
+  // 触发方式目前就支持change,因为vant表单组件有且只有change事件
+  input: [{ required: true, validator: () => {}, message: '请输入活动名称' }]
+})
 function handleSubmit() {
   console.log('提交')
 }

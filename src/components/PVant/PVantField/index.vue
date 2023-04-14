@@ -64,7 +64,7 @@ function handleInput(e: WechatMiniprogram.TouchEvent) {
 }
 function handleChange(e) {
   console.log('PVantField变化---')
-  emit('change')
+  emit('change', e)
 }
 </script>
 <script lang="ts">
