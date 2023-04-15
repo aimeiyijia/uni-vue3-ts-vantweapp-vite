@@ -25,6 +25,7 @@
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.7",
     "lodash.clonedeep": "^4.5.0",
+    "lodash.isempty": "^4.4.0",
     "lodash.isobject": "^3.0.2",
     "lodash.omit": "^4.5.0",
     "luch-request": "^3.0.8",

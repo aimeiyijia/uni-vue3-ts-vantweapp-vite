@@ -117,7 +117,6 @@
 
 <script setup lang="ts">
 import omit from 'lodash.omit'
-import { noneParamsEaseFuncs } from 'XrFrame/xrFrameSystem'
 
 import { httpPostCooperativeLogin } from '@/api/user'
 import PVantCheckbox from '@/components/PVant/PVantCheckbox/index.vue'

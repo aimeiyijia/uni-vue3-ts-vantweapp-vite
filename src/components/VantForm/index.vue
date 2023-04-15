@@ -52,6 +52,7 @@
 </template>
 
 <script setup lang="ts">
+import isEmpty from 'lodash.isempty'
 import omit from 'lodash.omit'
 
 import PVantCell from '@/components/PVant/PVantCell/index.vue'
@@ -101,11 +102,34 @@ function handleFieldChange(e, field) {
       errMsg: ''
     }
     const curFormRule = formData.rules[field]
-    const { required, message } = o
+    const { required, validator, message } = o
 
-    if (!value) {
-      curFormRule.show = true
-      curFormRule.errMsg = message
+    // if (validator) {
+    //   validator(o, value, e => {
+    //     if (e) {
+    //       curFormRule.show = true
+    //       curFormRule.errMsg = e.message
+    //     }
+    //   })
+    // }
+
+    console.log(isEmpty(value), '值是否为空')
+
+    // 值必填，先校验必填
+    if (required) {
+      if (isEmpty(value)) {
+        curFormRule.show = true
+        curFormRule.errMsg = message
+      }
+    }
+    // required 通过校验，再去校验 validator
+    if (!curFormRule.show && validator) {
+      validator(o, value, (e: Error) => {
+        if (e) {
+          curFormRule.show = true
+          curFormRule.errMsg = e.message
+        }
+      })
     }
   })
   console.log(formData.rules, '规则')
@@ -121,7 +145,7 @@ function handleChange(e) {
     position: absolute;
     left: -10rpx;
     top: -4rpx;
-    font-size: 18rpx;
+    font-size: 22rpx;
     color: var(--red, #ee0a24);
   }
   .form__vant-field {
