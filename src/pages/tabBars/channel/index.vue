@@ -16,7 +16,7 @@
     <!-- 破产事务 -->
     <view class="channel-funcs">
       <div class="funcs__title">我的功能</div>
-      <nav-list :nav-list="funcsList" />
+      <nav-list :nav-list="funcsList" @click="handleNavClick" />
     </view>
   </view>
   <van-dialog use-slot title="标题" :show="show" confirm-button-text="马上去修改">
@@ -31,7 +31,8 @@ import iconChannelInfo from '@/assets/images/channel/icon_channel-info.png'
 import iconJointMatters from '@/assets/images/channel/icon_joint-matters.png'
 import iconKnowledge from '@/assets/images/channel/icon_knowledge.png'
 import iconMeeting from '@/assets/images/channel/icon_meeting.png'
-onMounted(() => {})
+import { useRoute, useRouter } from '@/plugins/uni-router'
+const Router = useRouter()
 
 const show = ref(false)
 
@@ -39,22 +40,29 @@ const funcsList = reactive([
   {
     image: iconJointMatters,
     text: '协同事项',
-    navToName: 'JointMattersList',
+    navToName: 'Matters',
     auth: '/jointMatters'
   },
   {
     image: iconKnowledge,
     text: '知识库',
-    navToName: 'KnowledgeBaseList',
+    navToName: 'Knowledge',
     auth: '/knowledgeBaseList'
   },
   {
     image: iconMeeting,
     text: '联席会议',
-    navToName: 'JointMeetingList',
+    navToName: 'Meeting',
     auth: '/MeetingList'
   }
 ])
+function handleNavClick(navItem) {
+  console.log(navItem, 'navItem')
+  const { navToName } = navItem
+  Router.push({
+    name: navToName
+  })
+}
 </script>
 <script lang="ts">
 export default {

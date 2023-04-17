@@ -46,6 +46,27 @@
       }
     },
     {
+      "name": "Matters",
+      "path": "pages/matters/index",
+      "style": {
+        "navigationBarTitleText": "协同事项"
+      }
+    },
+    {
+      "name": "Knowledge",
+      "path": "pages/knowledge/index",
+      "style": {
+        "navigationBarTitleText": "知识库"
+      }
+    },
+    {
+      "name": "Meeting",
+      "path": "pages/meeting/index",
+      "style": {
+        "navigationBarTitleText": "联席会议"
+      }
+    },
+    {
       "name": "Form",
       "path": "pages/form/index",
       "style": {

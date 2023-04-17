@@ -189,9 +189,9 @@ async function handleLogin() {
     } else {
       userInfo.clearRemeberLoginInfo()
     }
-    // Router.pushTab({
-    //   name: 'Channel'
-    // })
+    Router.pushTab({
+      name: 'Channel'
+    })
   }
 }
 function handleRetrievePassword() {

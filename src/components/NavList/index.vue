@@ -17,8 +17,7 @@
 
 <script setup lang="ts">
 import jointMatters from '@/assets/images/channel/icon_joint-matters.png'
-import { useRoute, useRouter } from '@/plugins/uni-router'
-const Router = useRouter()
+
 const props = defineProps({
   col: {
     type: Number,
