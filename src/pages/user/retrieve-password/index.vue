@@ -105,7 +105,7 @@ const retrieveForms = reactive({
     rePassword: ''
   },
   rules: reactive({
-    realName: [{ required: true, message: '真实姓名不能为空' }],
+    realName: [{ required: true, message: '真实姓名不能为空', trigger: 'blur' }],
     idCard: [{ required: true, message: '证件号码不能为空' }, { validator: validateIdCard }],
     phone: [
       {

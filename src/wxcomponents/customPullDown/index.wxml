@@ -1,32 +1,28 @@
-<!--component/index.wxml-->
+<!-- component/index.wxml -->
 <!-- scroll-into-view="{{scrollIntoView}}" -->
 <!-- scroll-top="{{pageScrollViewTop}}" -->
-
 <wxs module="pullDown" src="./pullDown.wxs"></wxs>
 <view class="custom-pull-down-container">
-  <scroll-view
-    refresher-enabled
-    scroll-y
-    scroll-with-animation
-    refresher-default-style="none"
-    refresher-triggered="{{refresherTriggered}}"
-    bindrefresherpulling="{{pullDown.onContentPull}}"
-    bindrefresherrestore="{{pullDown.onRestore}}"
-    bindrefresherabort="{{pullDown.onAbort}}"
-    bindrefresherrefresh="{{pullDown.onRefresh}}"
-    bindscrolltolower="onReachBottom"
-    class="scroll-box"
-  >
+  <scroll-view refresher-enabled scroll-y scroll-with-animation refresher-default-style="none" refresher-triggered="{{refresherTriggered}}" bindrefresherpulling="{{pullDown.onContentPull}}" bindrefresherrestore="{{pullDown.onRestore}}" bindrefresherabort="{{pullDown.onAbort}}" bindrefresherrefresh="{{pullDown.onRefresh}}" bindscrolltolower="onReachBottom" class="scroll-box">
     <!-- 自定义下拉刷新动画 -->
     <view slot="refresher" class="custom-refresh-zone" data-threshold="{{changeBoundary}}">
       <view class="refresh-before-trigger">
-        <slot name="refresh-before-trigger"></slot>
+        <view class="custom-refresh-tips-loading tips-slot">
+          <slot name="refresh-before-trigger"></slot>
+        </view>
+        <text class="custom-refresh-tips-loading tips-text">继续下拉刷新</text>
       </view>
       <view class="refresh-after-trigger">
-        <slot name="refresh-after-trigger"></slot>
+        <view class="custom-refresh-tips-loading tips-slot">
+          <slot name="refresh-after-trigger"></slot>
+        </view>
+        <text class="custom-refresh-tips-loading tips-text">释放刷新</text>
       </view>
       <view class="refresh-loading">
-        <slot name="refresh-loading"></slot>
+        <view class="custom-refresh-tips-loading tips-slot">
+          <slot name="refresh-loading"></slot>
+        </view>
+        <text class="custom-refresh-tips-loading tips-text">加载中</text>
       </view>
     </view>
     <view class="pull-content">

@@ -14,16 +14,6 @@
       <van-tab title="标签 4"></van-tab>
     </van-tabs>
     <custom-pull-down class="custom-pull-down">
-      <template #refresh-before-trigger>
-        <view class="custom-refresh-zone-tips-loading">继续下拉刷新</view>
-      </template>
-      <template #refresh-after-trigger>
-        <view class="custom-refresh-zone-tips-loading">释放刷新</view>
-      </template>
-      <template #refresh-loading>
-        <view class="custom-refresh-zone-tips-loading">加载中</view>
-      </template>
-
       <template #content>
         <view class="card-container">
           <view v-for="item in 10" :key="item" class="single-card-container">
@@ -85,15 +75,6 @@ function handleTabChange(e) {}
   width: 100%;
   height: 100%;
 } */
-.custom-refresh-zone-tips-loading {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 10rpx;
-  width: 100%;
-  font-size: 26rpx;
-  color: #1989fa;
-}
 .page-container {
   display: inline-block;
   /* padding: 0 30rpx; */

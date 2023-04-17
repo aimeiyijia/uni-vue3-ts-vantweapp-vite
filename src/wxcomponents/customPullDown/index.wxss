@@ -22,6 +22,12 @@
 .refresh-loading {
   width: 100%;
 }
+.tips-text {
+  visibility: hidden;
+}
+.tips-slot:empty + .tips-text {
+  visibility: visible;
+}
 .custom-refresh-zone .refresh-before-trigger,
 .custom-refresh-zone .refresh-after-trigger {
   display: none;
@@ -34,4 +40,13 @@
 .custom-refresh-zone.refresher-before .refresh-loading,
 .custom-refresh-zone.refresher-after .refresh-loading {
   display: none;
+}
+.custom-refresh-tips-loading {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10rpx;
+  width: 100%;
+  font-size: 26rpx;
+  color: #1989fa;
 }
