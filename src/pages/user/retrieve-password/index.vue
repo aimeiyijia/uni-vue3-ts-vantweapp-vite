@@ -1,7 +1,7 @@
 <template>
   <view class="page-container retrieve-password-page">
     <view class="p-card-container">
-      <vant-form v-model="forms.data" :options="options" :rules="rules">
+      <vant-form v-model="retrieveForms.data" :options="options" :rules="rules">
         <template #test>
           <van-button plain type="info" size="small">获取验证码</van-button>
         </template>
@@ -12,15 +12,27 @@
 </template>
 
 <script setup lang="ts">
+import { httpPostResetPassword } from '@/api/user'
 import VantForm from '@/components/VantForm/index.vue'
-const forms = reactive({
+import { useRequest } from '@/http/hooks'
+import { useRouter } from '@/plugins/uni-router'
+import {
+  validateIdCard,
+  validateSmsCode,
+  validatorPassword,
+  validatorPasswordAgain,
+  validatorPhone
+} from '@/rules/validator'
+
+const Router = useRouter()
+const retrieveForms = reactive({
   data: {
-    input: '',
-    picker: [
-      { name: '宁波', key: 'ningbo' },
-      { name: '宁波', key: 'ningbo' }
-    ],
-    calendar: ['2021-1-1', '2022-1-1']
+    realName: '',
+    idCard: '',
+    phone: '',
+    smsCode: '',
+    password: '',
+    rePassword: ''
   }
 })
 const options = [
@@ -29,7 +41,7 @@ const options = [
     vantType: 'Field',
     // 防止与内置的title冲突
     vantTitle: '姓名',
-    field: 'input',
+    field: 'realName',
     placeholder: '请输入真实姓名',
     titleWidth: '150rpx'
   },
@@ -37,7 +49,7 @@ const options = [
     // 防止与内部type冲突
     vantType: 'Field',
     title: '证件号码',
-    field: 'input1',
+    field: 'idCard',
     placeholder: '请输入证件号码',
     titleWidth: '150rpx'
   },
@@ -45,7 +57,7 @@ const options = [
     // 防止与内部type冲突
     vantType: 'Field',
     title: '手机号码',
-    field: 'input2',
+    field: 'phone',
     placeholder: '请输入手机号码',
     titleWidth: '150rpx',
     slot: 'test'
@@ -54,7 +66,7 @@ const options = [
     // 防止与内部type冲突
     vantType: 'Field',
     title: '验证码',
-    field: 'input3',
+    field: 'smsCode',
     placeholder: '请输入验证码',
     titleWidth: '150rpx'
   },
@@ -62,7 +74,7 @@ const options = [
     // 防止与内部type冲突
     vantType: 'Field',
     title: '新密码',
-    field: 'input4',
+    field: 'password',
     placeholder: '8-16位，包含大写、小写字母、数字',
     titleWidth: '150rpx'
   },
@@ -70,28 +82,63 @@ const options = [
     // 防止与内部type冲突
     vantType: 'Field',
     title: '确认密码',
-    field: 'input5',
+    field: 'rePassword',
     placeholder: '确认新密码',
     titleWidth: '150rpx'
   }
 ]
 const rules = reactive({
-  // 触发方式目前就支持change,因为vant表单组件有且只有change事件
-  // required 加 validator 的形式下相当于先校验必填，再校验validator
-  input: [
+  realName: [{ required: true, message: '真实姓名不能为空' }],
+  idCard: [
+    { required: true, message: '证件号码不能为空' },
+    { required: true, validator: validateIdCard }
+  ],
+  phone: [
     {
       required: true,
-      validator: (rule, value, callback) => {
-        console.log(value, '外面的value')
-        // return callback(new Error('请输入数字值'))
-        return callback()
-      },
-      message: '请输入活动名称'
+      message: '请输入手机号码'
+    },
+    {
+      validator: validatorPhone
     }
-  ]
+  ],
+  smsCode: [
+    {
+      required: true,
+      message: '请输入验证码'
+    },
+    {
+      validator: validateSmsCode
+    }
+  ],
+  password: [{ required: true, message: '请输入新密码' }, { validator: validatorPassword }],
+  rePassword: [{ required: true, message: '请再次输入密码' }, { validator: validatorPasswordAgain }]
 })
-function handleSubmit() {
+function getParams() {
+  const { password, realName, idCard, phone, smsCode } = retrieveForms.data
+  const params = {
+    newPassword: password,
+    contactName: realName,
+    contactCardNo: idCard,
+    contactPhone: phone,
+    smsCode: smsCode
+  }
+  return params
+}
+async function handleSubmit() {
   console.log('提交')
+  const params = getParams()
+  const res = await useRequest(httpPostResetPassword(params))
+  if (res.code === 200) {
+    uni.showModal({
+      title: '温馨提示',
+      content: '新密码设置成功',
+      showCancel: false,
+      success: res => {
+        Router.back(1)
+      }
+    })
+  }
 }
 </script>
 

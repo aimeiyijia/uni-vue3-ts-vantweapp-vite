@@ -1,13 +1,7 @@
 <template>
   <view class="vant-form-container br20">
     <van-cell-group :border="false">
-      <van-cell
-        v-for="item in options"
-        :key="item.field"
-        v-bind="item"
-        center
-        class="vant-form__item"
-      >
+      <van-cell v-for="item in options" :key="item.field" v-bind="item" class="vant-form__item">
         <template #title>
           <view class="cell__title">
             <text v-if="rules[item.field]" class="icon__required">*</text>
@@ -154,12 +148,15 @@ function handleChange(e) {
   .cell__value--container {
     display: flex;
     position: relative;
-    align-items: center;
+    flex-direction: column;
+    /* align-items: center; */
     .error__message {
-      position: absolute;
+      margin-top: -18rpx;
+      /* position: absolute;
       left: 0;
-      bottom: 0rpx;
-      line-height: 100%;
+      bottom: 0rpx; */
+      line-height: 110%;
+      text-align: left;
       font-size: 20rpx;
       color: var(--red, #ee0a24);
     }

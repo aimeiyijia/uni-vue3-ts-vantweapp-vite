@@ -5,6 +5,10 @@
   .van-cell {
     background-color: transparent;
   }
+  .van-cell__title {
+    display: flex;
+    padding: var(--cell-vertical-padding, 10px) 0;
+  }
   .van-cell__value {
     .van-cell {
       padding: var(--cell-vertical-padding, 10px) 0;
