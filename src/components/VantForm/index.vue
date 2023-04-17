@@ -37,9 +37,9 @@
           >
             {{ formData.rules[item.field] && formData.rules[item.field].errMsg }}
           </text>
-          <!-- uniapp 不支持动态 作用域插槽 -->
-          <slot v-if="item.slot" :name="item.slot"></slot>
         </view>
+        <!-- uniapp 不支持动态 作用域插槽 -->
+        <slot v-if="item.slot" :name="item.slot"></slot>
       </van-cell>
     </van-cell-group>
   </view>
@@ -90,25 +90,15 @@ function handleFieldChange(e, field) {
   const value = e.detail
   console.log(e, '校验规则')
   console.log(rules, '校验规则')
+  triggerValidate(value, field)
+}
+
+function triggerValidate(value, field) {
+  const rules = props.rules[field]
+  formData.rules[field] = { show: false, field, errMsg: '' }
   rules.forEach(o => {
-    formData.rules[field] = {
-      show: false,
-      errMsg: ''
-    }
     const curFormRule = formData.rules[field]
     const { required, validator, message } = o
-
-    // if (validator) {
-    //   validator(o, value, e => {
-    //     if (e) {
-    //       curFormRule.show = true
-    //       curFormRule.errMsg = e.message
-    //     }
-    //   })
-    // }
-
-    console.log(isEmpty(value), '值是否为空')
-
     // 值必填，先校验必填
     if (required) {
       if (isEmpty(value)) {
@@ -120,17 +110,32 @@ function handleFieldChange(e, field) {
     if (!curFormRule.show && validator) {
       validator(o, value, (e: Error) => {
         if (e) {
+          console.log(e, '报错信息')
           curFormRule.show = true
-          curFormRule.errMsg = e.message
+          curFormRule.errMsg = e instanceof Error ? e.message : e
         }
       })
     }
   })
-  console.log(formData.rules, '规则')
+}
+
+async function validate() {
+  const modelValue = props.modelValue
+  for (const key in modelValue) {
+    if (Object.prototype.hasOwnProperty.call(modelValue, key)) {
+      triggerValidate(modelValue[key], key)
+    }
+  }
+  const nopass = Object.values(formData.rules).filter((o: any) => o.show)
+  return nopass.length > 0 ? false : true
 }
 function handleChange(e) {
   console.log(e, '选中的值变化')
 }
+
+defineExpose({
+  validate
+})
 </script>
 
 <style lang="scss">
@@ -149,6 +154,7 @@ function handleChange(e) {
     display: flex;
     position: relative;
     flex-direction: column;
+    flex: 1;
     /* align-items: center; */
     .error__message {
       margin-top: -18rpx;

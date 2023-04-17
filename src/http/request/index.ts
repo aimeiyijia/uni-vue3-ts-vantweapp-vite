@@ -26,7 +26,7 @@ export function $get(url: string, data: any, contentType?: string) {
   })
 }
 
-export function $delete(url, data, contentType) {
+export function $delete(url, data, contentType?) {
   const ct = contentType || FORMType
   return instance.request({
     method: 'DELETE',
@@ -37,7 +37,7 @@ export function $delete(url, data, contentType) {
     }
   })
 }
-export function $put(url, data, contentType) {
+export function $put(url, data, contentType?) {
   const ct = contentType || JSONType
   return instance.request({
     method: 'PUT',

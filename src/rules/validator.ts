@@ -83,9 +83,7 @@ export function validatePersonName(rule, value, callback) {
 
 // 身份证号码
 export function validateIdCard(rule, value, callback) {
-  if (value.trim() === '') {
-    callback(new Error('请输入身份证件号码'))
-  } else if (!idCardReg.test(value) && value.trim()) {
+  if (!idCardReg.test(value)) {
     callback(new Error('15或18位数字和大写字母X'))
   } else {
     callback()
