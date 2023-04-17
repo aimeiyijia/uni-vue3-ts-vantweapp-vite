@@ -17,6 +17,7 @@
             :border="false"
             clearable
             v-bind="item"
+            @blur="e => handleFieldBlur(e, item.field)"
             @change="e => handleFieldChange(e, item.field)"
           ></p-vant-field>
           <vant-field-picker
@@ -85,36 +86,47 @@ watch(
     deep: true // 默认：false
   }
 )
+function handleFieldBlur(e, field) {
+  const rules = props.rules[field]
+  const { value } = e.detail
+  console.log(e, '校验规则')
+  console.log(rules, '校验规则')
+  triggerValidate(value, field, 'blur')
+}
 function handleFieldChange(e, field) {
   const rules = props.rules[field]
   const value = e.detail
   console.log(e, '校验规则')
   console.log(rules, '校验规则')
-  triggerValidate(value, field)
+  triggerValidate(value, field, 'change')
 }
 
-function triggerValidate(value, field) {
+function triggerValidate(value, field, triggerType = 'all') {
   const rules = props.rules[field]
   formData.rules[field] = { show: false, field, errMsg: '' }
   rules.forEach(o => {
     const curFormRule = formData.rules[field]
-    const { required, validator, message } = o
-    // 值必填，先校验必填
-    if (required) {
-      if (isEmpty(value)) {
-        curFormRule.show = true
-        curFormRule.errMsg = message
-      }
-    }
-    // required 通过校验，再去校验 validator
-    if (!curFormRule.show && validator) {
-      validator(o, value, (e: Error) => {
-        if (e) {
-          console.log(e, '报错信息')
+    const { required, validator, message, trigger } = o
+    console.log(triggerType, 'triggerType')
+    console.log(trigger, 'trigger')
+    if (triggerType === trigger) {
+      // 值必填，先校验必填
+      if (required) {
+        if (isEmpty(value)) {
           curFormRule.show = true
-          curFormRule.errMsg = e instanceof Error ? e.message : e
+          curFormRule.errMsg = message
         }
-      })
+      }
+      // required 通过校验，再去校验 validator
+      if (!curFormRule.show && validator) {
+        validator(o, value, (e: Error) => {
+          if (e) {
+            console.log(e, '报错信息')
+            curFormRule.show = true
+            curFormRule.errMsg = e instanceof Error ? e.message : e
+          }
+        })
+      }
     }
   })
 }

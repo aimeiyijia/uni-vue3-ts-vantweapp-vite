@@ -4,6 +4,7 @@
     :value="modelValue"
     v-bind="attrs"
     @change="handleChange"
+    @blur="handleBlur"
     @click-input="handleInputClick"
     @input="handleInput"
   >
@@ -44,7 +45,7 @@ const props = defineProps({
     default: false
   }
 })
-const emit = defineEmits(['update:modelValue', 'change', 'click-input'])
+const emit = defineEmits(['update:modelValue', 'change', 'blur', 'click-input'])
 // 封装组件时 为了解决uniapp 不支持 kebab-case（短横线）命名 所以需要转为 camelCased (驼峰式) 命名
 const attrs = computed(() => {
   const originAttrs = useAttrs()
@@ -62,8 +63,10 @@ function handleInput(e: WechatMiniprogram.TouchEvent) {
   const value = e.detail
   emit('update:modelValue', value)
 }
+function handleBlur(e) {
+  emit('blur', e)
+}
 function handleChange(e) {
-  console.log('PVantField变化---')
   emit('change', e)
 }
 </script>
