@@ -2,17 +2,32 @@
   <view class="page-container">
     <p-search v-model="searchValue" placeholder="搜索案号、协同事项标题" @search="handleSearch" />
     <p-van-tabs :active="activeTab" :tabs="statusTabs" @change="handleTabChange"></p-van-tabs>
-    <p-list
-      :columns="formOptions.columns"
-      :data="formOptions.data"
-      :row-props="formOptions.rowProps"
-      :config="formOptions.config"
-    ></p-list>
+    <view
+      class="page__content page__content--has-search page__content--has-tabs page__content--has-search-tabs"
+    >
+      <p-list
+        :columns="formOptions.columns"
+        :data="formOptions.data"
+        :row-props="formOptions.rowProps"
+        :config="formOptions.config"
+      >
+        <template #mark-right="{ data }">
+          <van-image
+            v-if="data.showUnread"
+            width="3rem"
+            height="3rem"
+            fit="contain"
+            :src="iconUnread"
+          />
+        </template>
+      </p-list>
+    </view>
   </view>
 </template>
 
 <script setup lang="ts">
 import { httpPostJointMatterCount, httpPostJointMatterList, httpPutUpdateRead } from '@/api/matters'
+import iconUnread from '@/assets/images/icons/unread.png'
 import PList from '@/components/PList/index.vue'
 import PSearch from '@/components/PVant/PSearch/index.vue'
 import PVanTabs from '@/components/PVant/PVanTabs/index.vue'
@@ -186,31 +201,15 @@ async function setRead(detail) {
 </script>
 
 <style scoped lang="scss">
-/* .custom-pull-down {
-  margin-top: 20rpx;
-  width: 100%;
-  height: 100%;
-} */
 .page-container {
   display: inline-block;
-  /* padding: 0 30rpx; */
+  overflow: hidden;
   width: 100%;
   height: 100%;
   background-color: #f7f7f7;
 }
-:deep(.van-divider) {
-  margin: 18rpx 0 !important;
-}
-:deep(.van-tabs) {
-  margin-bottom: 20rpx;
-}
-/* :deep(.van-tabs__scroll) {
-  background-color: transparent;
-} */
-</style>
-<!-- 共享的css变量 useCssModule -->
-<style module lang="scss">
-.a {
-  color: red;
+.page__content {
+  margin-top: 20rpx;
+  height: calc(100% - 230rpx);
 }
 </style>

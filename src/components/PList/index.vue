@@ -19,7 +19,13 @@
                   </text>
                   <text class="col__value">{{ single.$columnsValue }}</text>
                 </view>
+                <!-- 小程序支持作用域插槽，支持动态插槽，但是不支持动态作用域插槽 -->
+                <!-- 所以用固定名称的作用域插槽来扩展 -->
+                <view class="mark-right">
+                  <slot name="mark-right" :data="item"></slot>
+                </view>
               </view>
+
               <van-divider hairline />
               <view class="card__footer">
                 <view class="footer__item">
@@ -146,8 +152,11 @@ watch(
 </script>
 
 <style scoped lang="scss">
+.list-container {
+  height: 100%;
+}
 .card-container {
-  padding: 4rpx 30rpx;
+  padding: 0 30rpx;
 }
 .single-card-container {
   position: relative;
@@ -198,7 +207,11 @@ watch(
     }
   }
   .card__main {
+    position: relative;
     padding: 20rpx 32rpx;
+    .card__content {
+      position: relative;
+    }
     .main__col {
       display: flex;
       margin: 12rpx 0;
@@ -225,15 +238,12 @@ watch(
     }
   }
 }
-:deep(.van-divider) {
-  margin: 18rpx 0 !important;
+.mark-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
-:deep(.van-tabs) {
-  margin-bottom: 20rpx;
-}
-/* :deep(.van-tabs__scroll) {
-  background-color: transparent;
-} */
 </style>
 <!-- 共享的css变量 useCssModule -->
 <style module lang="scss">

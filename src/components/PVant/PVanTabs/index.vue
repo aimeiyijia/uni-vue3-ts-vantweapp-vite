@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="p-vant-tabs-container">
     <van-tabs
       v-bind="attrs"
       color="#1989fa"
