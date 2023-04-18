@@ -11,6 +11,9 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ImgTip: typeof import('./../src/components/ImgTip/index.vue')['default']
     NavList: typeof import('./../src/components/NavList/index.vue')['default']
+    PList: typeof import('./../src/components/PList/index.vue')['default']
+    PSearch: typeof import('./../src/components/PSearch/index.vue')['default']
+    PVanTabs: typeof import('./../src/components/PVant/PVanTabs/index.vue')['default']
     PVantCell: typeof import('./../src/components/PVant/PVantCell/index.vue')['default']
     PVantCheckbox: typeof import('./../src/components/PVant/PVantCheckbox/index.vue')['default']
     PVantField: typeof import('./../src/components/PVant/PVantField/index.vue')['default']

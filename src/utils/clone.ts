@@ -1,7 +1,7 @@
 // 深拷贝
 export function deepClone<T>(source: T): T {
   return Array.isArray(source)
-    ? source.map((item) => deepClone(item))
+    ? source.map(item => deepClone(item))
     : source instanceof Date
     ? new Date(source.getTime())
     : source && typeof source === 'object'
