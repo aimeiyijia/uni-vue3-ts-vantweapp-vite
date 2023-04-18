@@ -7,12 +7,16 @@
     >
       <template #content>
         <view v-if="hasData" class="card-container">
-          <view v-for="item in listOptions.data" :key="item" class="single-card-container">
+          <view
+            v-for="item in listOptions.data"
+            :key="item.$columnID"
+            class="single-card-container"
+          >
             <view class="card__title">{{ item.$columnTitle }}</view>
             <text :class="['card__status', item.$columnStatusType]">{{ item.$columnStatus }}</text>
             <view class="card__main">
               <view class="card__content">
-                <view v-for="single in item.$cellData" :key="single" class="main__col">
+                <view v-for="single in item.$cellData" :key="single.$cellID" class="main__col">
                   <text
                     class="col__title"
                     :style="{
@@ -51,7 +55,7 @@
         />
       </template>
       <template #bottom>
-        <view class="pull-up-tips">
+        <view v-if="hasData" class="pull-up-tips">
           <text v-show="loadingMore">上滑加载更多</text>
           <text v-show="!loadingMore">没有更多数据了</text>
         </view>
@@ -61,44 +65,59 @@
 </template>
 
 <script setup lang="ts">
-import { deepClone } from '@/utils'
-function getValueByKey(key: string, row: any) {
-  return key.split('.').reduce((obj, cur) => {
-    if (obj) {
-      return obj[cur]
-    }
-  }, row)
+import { deepClone, getValueByKey, guid } from '@/utils'
+
+interface IConfig {
+  labelWidth?: string
 }
-function guid() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    const r = (Math.random() * 16) | 0
-    const v = c === 'x' ? r : (r & 0x3) | 0x8
-    return v.toString(16)
-  })
+interface IData {
+  $cellID: string
+  $columnsValue: string
+  [key: string]: any
+}
+interface IColumns {
+  label?: string
+  prop?: string
+  customRender: (col: IData, row: IListData) => any
+}
+interface IRowProps {
+  titleProp?: string
+  statusProp?: string
+  statusTypeProp?: string
+  personProp?: string
+  timeProps?: string
 }
 
-const props = defineProps({
-  config: {
-    type: Object,
-    default: () => ({})
-  },
-  columns: {
-    type: Array,
-    default: () => []
-  },
-  rowProps: {
-    type: Object,
-    default: () => ({})
-  },
-  data: {
-    type: Array,
-    default: []
-  },
-  total: {
-    type: Number,
-    default: 0
-  }
+interface Props {
+  config: IConfig
+  columns: IColumns[]
+  rowProps: IRowProps
+  data: IData[]
+  total: number
+}
+
+interface IListData extends IData {
+  $columnID: string
+  $columnTitle: string
+  $columnPerson: string
+  $columnTime: string
+  $columnStatus: string
+  $columnStatusType: string
+  $cellData: IData[]
+}
+
+interface IListOptions {
+  data: IListData[]
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  config: () => ({}),
+  columns: () => [],
+  rowProps: () => ({}),
+  data: () => [],
+  total: 0
 })
+
 const emits = defineEmits(['click', 'refresher-restore', 'load-more'])
 
 const pageNo = ref(0)
@@ -107,7 +126,7 @@ const loadingMore = computed(() => {
   return listOptions.data.length < props.total
 })
 
-const listOptions = reactive({
+const listOptions = reactive<IListOptions>({
   data: []
 })
 
@@ -129,10 +148,11 @@ const mergeProps = computed(() => {
 
 // 将this.data转换成符合列表要求的结构
 function transformDataToListData(o: any) {
-  const cellData: any[] = []
+  const cellData: IData[] = []
   deepClone(props.columns).forEach((c: any) => {
     const { customRender } = c
-    const cols: any = { $columnsValue: '' }
+    const cols: any = { $columnsValue: '', $cellID: '' }
+    o.$cellID = guid()
     if (customRender) {
       cols.$columnsValue = customRender(c, o)
     } else {
@@ -147,21 +167,17 @@ function transformDataToListData(o: any) {
 watch(
   [() => props.columns, () => props.data],
   () => {
-    const listsData: any[] = []
+    const listsData: IListData[] = []
     const { titleProp, personProp, timeProps, statusProp, statusTypeProp } = mergeProps.value
-    deepClone(props.data).forEach((o: any) => {
-      let cellData: any = []
+    deepClone(props.data).forEach(o => {
       o.$columnID = guid()
-      cellData = transformDataToListData(o)
-
       o.$columnTitle = getValueByKey(titleProp, o)
       o.$columnPerson = getValueByKey(personProp, o)
       o.$columnTime = getValueByKey(timeProps, o)
       o.$columnStatus = getValueByKey(statusProp, o)
       o.$columnStatusType = getValueByKey(statusTypeProp, o)
-
-      o.$cellData = cellData
-      listsData.push(o)
+      o.$cellData = transformDataToListData(o)
+      listsData.push(o as IListData)
     })
     listOptions.data = listsData
   },

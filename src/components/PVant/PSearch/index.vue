@@ -30,7 +30,7 @@ const attrs = computed(() => {
   return newAttrs
 })
 function handleChange(e) {
-  emits('update:modelValue', e)
+  emits('update:modelValue', e.detail)
 }
 function handleSearch(e) {
   emits('search', e)

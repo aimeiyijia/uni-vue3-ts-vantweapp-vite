@@ -1,7 +1,7 @@
 <template>
   <view class="page-container">
-    <p-search v-model="searchValue" placeholder="搜索案号、协同事项标题" @search="handleSearch" />
-    <p-van-tabs :active="activeTab" :tabs="statusTabs" @change="handleTabChange"></p-van-tabs>
+    <p-search placeholder="搜索案号、协同事项标题" @search="handleSearch" />
+    <p-van-tabs :active="3" :tabs="statusTabs" @change="handleTabChange"></p-van-tabs>
     <view
       class="page__content page__content--has-search page__content--has-tabs page__content--has-search-tabs"
     >
@@ -38,35 +38,35 @@ import { useRequest } from '@/http/hooks'
 import { useRouter } from '@/plugins/uni-router'
 const Router = useRouter()
 const userType = 'cooperative'
-const activeTab = ref(3)
+
 const statusTabs = reactive([
   {
     title: '全部',
     type: 'allCount',
     code: '',
-    value: ''
+    value: 0
   },
   {
     title: '待处理',
     type: 'dwCount',
     code: '3',
-    value: ''
+    value: 0
   },
   {
     title: '已处理',
     type: 'yclCount',
     code: '1,2',
-    value: ''
+    value: 0
   },
   {
     title: '已办结',
     type: 'bjCount',
     code: '4',
-    value: ''
+    value: 0
   }
 ])
+const matterStatus = ref('')
 const searchValue = ref('')
-const matterStatus = ref(0)
 // 分页相关参数
 const pagParams = reactive({
   pageNo: 1,
@@ -124,9 +124,23 @@ function initPageParams() {
   pagParams.pageNo = 1
   pagParams.pageSize = 10
 }
-// 获取协同事项列表
-async function getJointMatterList() {
-  console.log(pagParams, '分页参数')
+
+function getCountParams() {
+  return {
+    userType
+  }
+}
+// 获取协同事项统计数量
+async function getJointMatterCount() {
+  const params = getCountParams()
+  const res = await useRequest(httpPostJointMatterCount(params))
+  if (!res.data) return
+  statusTabs.forEach(item => {
+    item.value = res.data[item.type] > 99 ? '99+' : res.data[item.type]
+  })
+}
+
+function getParams() {
   const params = {
     pageNo: pagParams.pageNo,
     pageSize: pagParams.pageSize,
@@ -134,6 +148,11 @@ async function getJointMatterList() {
     keyWord: searchValue.value,
     matterStatus: matterStatus.value
   }
+  return params
+}
+// 获取协同事项列表
+async function getJointMatterList() {
+  const params = getParams()
   const res = await useRequest(httpPostJointMatterList(params))
   if (!res.data) return
   const statusMap = {
@@ -155,27 +174,17 @@ async function getJointMatterList() {
   formOptions.total = res.data.total
   getJointMatterCount()
 }
-// 获取协同事项统计数量
-async function getJointMatterCount() {
-  const params = {
-    userType
-  }
-  const res = await useRequest(httpPostJointMatterCount(params))
-  if (!res.data) return
-  statusTabs.forEach(item => {
-    item.value = res.data[item.type] > 99 ? '99+' : res.data[item.type]
-  })
-}
+
 function handleSearch(e) {
   console.log(e, '搜索')
-  searchValue.value = e
+  searchValue.value = e.detail
   initPageParams()
   getJointMatterList()
 }
 function handleTabChange(e) {
-  const { code } = e
+  const { name } = e.detail
   console.log(e, '切换')
-  matterStatus.value = code
+  matterStatus.value = name
   initPageParams()
   getJointMatterList()
 }

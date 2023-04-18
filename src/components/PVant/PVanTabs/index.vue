@@ -11,7 +11,8 @@
         v-for="item in tabs"
         :key="item.title"
         :title="item.title"
-        :info="item.value"
+        :name="item.code"
+        :info="item.value ? item.value : ''"
       ></van-tab>
     </van-tabs>
   </view>
@@ -21,11 +22,16 @@
 import { useAttrs } from 'vue'
 
 import { getCamelCase } from '@/utils/transform'
-const props = defineProps({
-  tabs: {
-    type: Array,
-    default: []
-  }
+interface ITabs {
+  title: string
+  value: string
+  code: string
+}
+interface Props {
+  tabs: ITabs[]
+}
+const props = withDefaults(defineProps<Props>(), {
+  tabs: () => []
 })
 const emits = defineEmits(['change'])
 const attrs = computed(() => {
