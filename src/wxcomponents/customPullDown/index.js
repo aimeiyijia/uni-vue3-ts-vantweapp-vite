@@ -36,13 +36,13 @@ Component({
    */
   methods: {
     onReachBottom(event) {
-      this.triggerEvent('onReachBottom')
+      this.triggerEvent('reachBottom')
     },
     onRefresherRestore(event) {
-      this.triggerEvent('onRefresherRestore')
+      this.triggerEvent('refresherRestore')
     },
     onRefresherAbort(event) {
-      this.triggerEvent('onRefresherAbort')
+      this.triggerEvent('refresherAbort')
     },
     onPullDownRefresh(event) {
       this.setTriggerStatus(true)
@@ -54,7 +54,7 @@ Component({
       this.setData({
         refresherTriggered: bool
       })
-      this.triggerEvent(bool ? 'onPullDownRefreshStart' : 'onPullDownRefreshEnd')
+      this.triggerEvent(bool ? 'pullDownRefreshStart' : 'pullDownRefreshEnd')
     }
   }
 })

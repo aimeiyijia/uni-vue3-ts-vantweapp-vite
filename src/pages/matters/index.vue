@@ -10,6 +10,9 @@
         :data="formOptions.data"
         :row-props="formOptions.rowProps"
         :config="formOptions.config"
+        :total="formOptions.total"
+        @refresher-restore="handleRefresherRestore"
+        @load-more="handleLoadMore"
       >
         <template #mark-right="{ data }">
           <van-image
@@ -35,38 +38,37 @@ import { useRequest } from '@/http/hooks'
 import { useRouter } from '@/plugins/uni-router'
 const Router = useRouter()
 const userType = 'cooperative'
-const activeTab = ref(1)
+const activeTab = ref(3)
 const statusTabs = reactive([
   {
     title: '全部',
     type: 'allCount',
     code: '',
-    value: 0
+    value: ''
   },
   {
     title: '待处理',
     type: 'dwCount',
     code: '3',
-    value: 0
+    value: ''
   },
   {
     title: '已处理',
     type: 'yclCount',
     code: '1,2',
-    value: 0
+    value: ''
   },
   {
     title: '已办结',
     type: 'bjCount',
     code: '4',
-    value: 0
+    value: ''
   }
 ])
 const searchValue = ref('')
 const matterStatus = ref(0)
 // 分页相关参数
 const pagParams = reactive({
-  total: 0,
   pageNo: 1,
   pageSize: 10
 })
@@ -103,22 +105,28 @@ const formOptions = reactive({
     personProp: 'departmentName',
     timeProps: 'submitTime'
   },
-  data: []
+  data: [],
+  total: 0
 })
 
 // 加载更多
-function loadingMore(pageNo) {
+function handleLoadMore(pageNo) {
+  console.log(pageNo, '加载更多')
   pagParams.pageNo = pageNo
+  getJointMatterList()
+}
+function handleRefresherRestore() {
+  initPageParams()
   getJointMatterList()
 }
 function initPageParams() {
   formOptions.data = []
-  pagParams.total = 0
   pagParams.pageNo = 1
   pagParams.pageSize = 10
 }
 // 获取协同事项列表
 async function getJointMatterList() {
+  console.log(pagParams, '分页参数')
   const params = {
     pageNo: pagParams.pageNo,
     pageSize: pagParams.pageSize,
@@ -144,7 +152,7 @@ async function getJointMatterList() {
   })
   formOptions.data = formOptions.data.concat(list)
   console.log(formOptions.data, '所有的列表数据')
-  pagParams.total = res.data.total
+  formOptions.total = res.data.total
   getJointMatterCount()
 }
 // 获取协同事项统计数量
@@ -157,9 +165,6 @@ async function getJointMatterCount() {
   statusTabs.forEach(item => {
     item.value = res.data[item.type] > 99 ? '99+' : res.data[item.type]
   })
-}
-function refresherpulling() {
-  formOptions.data = []
 }
 function handleSearch(e) {
   console.log(e, '搜索')

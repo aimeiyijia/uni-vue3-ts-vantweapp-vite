@@ -1,6 +1,10 @@
 <template>
   <view class="list-container">
-    <custom-pull-down class="custom-pull-down">
+    <custom-pull-down
+      class="custom-pull-down"
+      @reach-bottom="handleScrollBottom"
+      @refresher-restore="handleRefresherRestore"
+    >
       <template #content>
         <view v-if="hasData" class="card-container">
           <view v-for="item in listOptions.data" :key="item" class="single-card-container">
@@ -46,6 +50,12 @@
           description="暂无数据"
         />
       </template>
+      <template #bottom>
+        <view class="pull-up-tips">
+          <text v-show="loadingMore">上滑加载更多</text>
+          <text v-show="!loadingMore">没有更多数据了</text>
+        </view>
+      </template>
     </custom-pull-down>
   </view>
 </template>
@@ -83,7 +93,18 @@ const props = defineProps({
   data: {
     type: Array,
     default: []
+  },
+  total: {
+    type: Number,
+    default: 0
   }
+})
+const emits = defineEmits(['click', 'refresher-restore', 'load-more'])
+
+const pageNo = ref(0)
+
+const loadingMore = computed(() => {
+  return listOptions.data.length < props.total
 })
 
 const listOptions = reactive({
@@ -149,6 +170,18 @@ watch(
     immediate: true
   }
 )
+function handleRefresherRestore() {
+  console.log('下拉刷新')
+  pageNo.value = 0
+  emits('refresher-restore')
+}
+function handleScrollBottom() {
+  console.log('滚动到底部')
+  if (loadingMore.value) {
+    pageNo.value++
+    emits('load-more', pageNo)
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -243,6 +276,9 @@ watch(
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+}
+.pull-up-tips {
+  text-align: center;
 }
 </style>
 <!-- 共享的css变量 useCssModule -->

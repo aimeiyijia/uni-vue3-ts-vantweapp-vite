@@ -36,8 +36,16 @@ const attrs = computed(() => {
   }
   return newAttrs
 })
+const canEmitChange = ref(false)
+
+// 利于子组件晚于父组件mounted
+onMounted(() => {
+  canEmitChange.value = true
+})
 function handleTabChange(e) {
-  emits('change', e)
+  if (canEmitChange.value) {
+    emits('change', e)
+  }
 }
 </script>
 

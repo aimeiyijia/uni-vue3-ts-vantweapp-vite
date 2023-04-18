@@ -28,5 +28,8 @@
     <view class="pull-content">
       <slot name="content"></slot>
     </view>
+    <view class="pull-bottom">
+      <slot name="bottom"></slot>
+    </view>
   </scroll-view>
 </view>
